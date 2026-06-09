@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FESTA Banquetes — Salón de Eventos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a0d; --bg2:#0f0d12; --panel:#16131b;
+    --text:#f6f1ea; --muted:#a59cb0; --line:rgba(255,255,255,.10);
+    --gold:#e9c87a; --gold2:#c9a14e; --rose:#e7a6b8; --busy:#e7596e;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',system-ui,sans-serif;
+    line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .display{font-family:'Playfair Display',serif}
+  .script{font-family:'Cormorant Garamond',serif}
+  a{color:inherit;text-decoration:none}
+  img{display:block}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 28px}
+  .gold-fill{background:linear-gradient(180deg,#f6e3b0,var(--gold) 50%,#b88a3c);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  #progress{position:fixed;top:0;left:0;height:3px;width:100%;transform:scaleX(0);transform-origin:0 50%;
+    background:linear-gradient(90deg,var(--gold2),var(--gold),#fff);z-index:90}
+  #cursor{position:fixed;top:0;left:0;width:34px;height:34px;border:1px solid rgba(233,200,122,.7);
+    border-radius:50%;pointer-events:none;z-index:120;transform:translate(-50%,-50%);
+    transition:width .25s,height .25s,background .25s,border-color .25s,opacity .3s;mix-blend-mode:difference;opacity:0}
+  #cursor.hot{width:64px;height:64px;background:var(--gold);border-color:var(--gold)}
+  @media(hover:none){#cursor{display:none}}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform 1s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  .mask{overflow:hidden;display:block}
+  .mask>*{display:block;transform:translateY(112%);transition:transform 1.05s cubic-bezier(.16,1,.3,1)}
+  .mask.in>*{transform:translateY(0)}
+  #fx{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.55}
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;
+    justify-content:space-between;padding:18px 32px;transition:background .4s,backdrop-filter .4s,border-color .4s,padding .4s;
+    border-bottom:1px solid transparent}
+  header.nav.scrolled{background:rgba(11,10,13,.72);backdrop-filter:blur(14px);border-color:var(--line);padding:12px 32px}
+  .logo{font-family:'Playfair Display',serif;font-weight:900;font-size:25px;letter-spacing:.30em;padding-left:.3em;display:flex;align-items:baseline;gap:.5em}
+  .logo b{color:var(--gold)}
+  .logo s{font-family:'Cormorant Garamond',serif;font-style:italic;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:.12em;color:var(--muted)}
+  nav.links{display:flex;gap:30px;font-size:14px;color:var(--muted);font-weight:500}
+  nav.links a{position:relative;transition:color .25s}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--gold);transition:width .3s}
+  nav.links a:hover{color:var(--text)} nav.links a:hover::after{width:100%}
+  .nav-cta{border:1px solid var(--gold2);color:var(--gold);padding:10px 20px;border-radius:40px;font-size:13px;font-weight:600;transition:background .3s,color .3s}
+  .nav-cta:hover{background:var(--gold);color:#000}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer}
+  .burger span{width:24px;height:2px;background:var(--text)}
+  .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:8vh;overflow:hidden}
+  .hero-bg{position:absolute;inset:-12% 0;z-index:-2;will-change:transform}
+  .hero-bg img{width:100%;height:100%;object-fit:cover}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(11,10,13,.6),rgba(11,10,13,.1) 35%,rgba(11,10,13,.82))}
+  .hero .kick{color:var(--gold);letter-spacing:.4em;text-transform:uppercase;font-size:13px;margin-bottom:18px}
+  .hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(46px,9.4vw,132px);line-height:.92;letter-spacing:-.02em;max-width:15ch}
+  .hero h1 .it{font-style:italic;font-weight:700}
+  .hero p.sub{margin-top:24px;max-width:48ch;color:#ece6dd;font-size:clamp(15px,1.6vw,19px);font-weight:300}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(180deg,#f6e3b0,var(--gold2));color:#2a1f08;padding:15px 28px;border-radius:46px;font-weight:600;font-size:15px;transition:transform .25s,box-shadow .3s;will-change:transform;box-shadow:0 10px 30px rgba(201,161,78,.25)}
+  .btn:hover{box-shadow:0 16px 44px rgba(201,161,78,.4)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.35);box-shadow:none}
+  .btn.ghost:hover{background:rgba(255,255,255,.08)}
+  .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .searchbar{margin-top:40px;background:rgba(16,13,18,.7);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:18px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;max-width:820px}
+  .searchbar .seg{flex:1;min-width:150px;display:flex;flex-direction:column;padding:10px 16px}
+  .searchbar label{font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:var(--gold)}
+  .searchbar select,.searchbar input{background:transparent;border:none;color:var(--text);font-family:inherit;font-size:15px;margin-top:4px;outline:none}
+  .searchbar select option{color:#000}
+  .searchbar input::-webkit-calendar-picker-indicator{filter:invert(.7) sepia(1) saturate(3) hue-rotate(5deg)}
+  .searchbar .go{background:linear-gradient(180deg,#f6e3b0,var(--gold2));color:#000;border:none;border-radius:12px;width:54px;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;align-self:stretch}
+  .scrollcue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:3}
+  .scrollcue i{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:cue 1.8s infinite}
+  @keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}50.1%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+  .marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:22px 0;background:var(--bg)}
+  .marquee .track{display:flex;gap:60px;white-space:nowrap;width:max-content;animation:marq 26s linear infinite}
+  @keyframes marq{to{transform:translateX(-50%)}}
+  .marquee span{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(26px,4vw,52px);color:var(--muted);display:flex;align-items:center;gap:60px}
+  .marquee span b{color:var(--text);font-weight:700;font-style:normal}
+  .marquee em{font-style:normal;color:var(--gold)}
+  .eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .sec-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,54px);line-height:1.05;margin-top:14px;max-width:20ch}
+  .services{background:var(--bg)}
+  .svc-head{padding:120px 0 30px}
+  .svc-stage{height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+  .svc-stage .visual{position:absolute;right:max(28px,calc((100vw - 1240px)/2 + 28px));top:50%;transform:translateY(-50%);width:min(40vw,440px);height:64vh;border-radius:18px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6)}
+  .svc-stage .visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .6s,transform .8s}
+  .svc-stage .visual img.on{opacity:1;transform:scale(1)}
+  .svc-words{position:relative;z-index:2}
+  .svc-words .item{display:flex;align-items:baseline;gap:22px;padding:6px 0;opacity:.26;transition:opacity .4s,transform .4s;transform:translateX(0)}
+  .svc-words .item.on{opacity:1;transform:translateX(18px)}
+  .svc-words .item.on h3{color:var(--gold)}
+  .svc-words .item .n{font-size:14px;color:var(--muted)}
+  .svc-words .item h3{font-family:'Playfair Display',serif;font-size:clamp(40px,8.4vw,98px);line-height:1;transition:color .4s}
+  .svc-words .desc{max-width:48ch;color:var(--muted);font-weight:300;margin-top:16px;min-height:64px}
+  .featured{padding:110px 0}
+  .feat-head{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .5s,border-color .4s,opacity .9s}
+  .card:hover{transform:translateY(-10px);border-color:rgba(233,200,122,.5)}
+  .card .ph{height:260px;overflow:hidden;position:relative}
+  .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+  .card:hover .ph img{transform:scale(1.08)}
+  .card .tag{position:absolute;top:14px;left:14px;background:rgba(11,10,13,.78);backdrop-filter:blur(6px);padding:6px 14px;border-radius:30px;font-size:12px;font-weight:600;color:var(--gold)}
+  .card .body{padding:22px}
+  .card .price{font-family:'Playfair Display',serif;font-size:24px}
+  .card .addr{color:var(--muted);font-size:14px;margin-top:4px}
+  .card .meta{display:flex;gap:18px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+  .card .meta b{color:var(--text);font-weight:600}
+  .stats{padding:30px 0 100px}
+  .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;border-top:1px solid var(--line);padding-top:50px}
+  .stat .num{font-family:'Playfair Display',serif;font-size:clamp(40px,5vw,68px);line-height:1}
+  .stat .num .gold-fill{display:inline}
+  .stat .lab{color:var(--muted);margin-top:8px;font-size:14px}
+  .agenda{padding:30px 0 110px;background:var(--bg)}
+  .agenda-head{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .agenda-head .sec-title{max-width:26ch}
+  .cal-wrap{margin:50px auto 0;max-width:780px;background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:30px 30px 26px}
+  .cal-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+  .cal-top h3{font-family:'Playfair Display',serif;font-size:26px;text-transform:capitalize}
+  .cal-nav{display:flex;gap:10px}
+  .cal-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--text);font-size:20px;cursor:pointer;transition:.25s;display:flex;align-items:center;justify-content:center}
+  .cal-nav button:hover{border-color:var(--gold2);color:var(--gold)}
+  .cal-nav button:disabled{opacity:.25;cursor:default}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+  .cal-dow{text-align:center;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-bottom:4px}
+  .cal-cell{aspect-ratio:1/1;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:15px;border:1px solid transparent;gap:3px}
+  .cal-cell.empty{visibility:hidden}
+  .cal-cell .dot{font-size:8.5px;text-transform:uppercase;letter-spacing:.04em;font-weight:600}
+  .cal-cell.free{background:rgba(233,200,122,.08);border-color:rgba(233,200,122,.28);cursor:pointer;transition:.2s}
+  .cal-cell.free .dot{color:var(--gold)}
+  .cal-cell.free:hover{background:linear-gradient(180deg,#f6e3b0,var(--gold2));color:#2a1f08;transform:translateY(-3px);box-shadow:0 12px 26px rgba(201,161,78,.3)}
+  .cal-cell.free:hover .dot{color:#2a1f08}
+  .cal-cell.busy{background:rgba(231,89,110,.10);border-color:rgba(231,89,110,.32);color:var(--rose)}
+  .cal-cell.busy .dot{color:var(--busy)}
+  .cal-cell.past{opacity:.22;color:var(--muted)}
+  .cal-legend{display:flex;gap:26px;flex-wrap:wrap;justify-content:center;margin-top:26px;font-size:13px;color:var(--muted)}
+  .cal-legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:8px;vertical-align:-2px}
+  .cal-note{text-align:center;margin-top:16px;color:var(--muted);font-size:13px}
+  .cal-note b{color:var(--gold);font-weight:600}
+  .sky{height:200vh;position:relative}
+  .sky .sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:#080609}
+  .sky .layer{position:absolute;inset:0;background-size:cover;background-position:center;will-change:transform,opacity}
+  .sky .grad{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,6,9,.25),rgba(8,6,9,.78));z-index:1}
+  .sky .inner{position:relative;z-index:3}
+  .sky .big{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(70px,17vw,260px);line-height:.9;letter-spacing:.02em;background:linear-gradient(180deg,#fff,var(--gold) 70%,#b88a3c);-webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform}
+  .sky .small{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,5vw,58px);color:var(--rose);margin-top:2px}
+  .packages{padding:30px 0 110px;background:var(--bg)}
+  .pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+  .pkg{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:34px 30px;transition:transform .5s,border-color .4s,opacity .9s;overflow:hidden}
+  .pkg:hover{transform:translateY(-8px);border-color:rgba(233,200,122,.5)}
+  .pkg.feat{border-color:rgba(233,200,122,.55);background:linear-gradient(180deg,rgba(233,200,122,.07),var(--panel) 40%)}
+  .pkg .pop{position:absolute;top:18px;right:18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#2a1f08;background:linear-gradient(180deg,#f6e3b0,var(--gold2));padding:5px 12px;border-radius:30px;font-weight:700}
+  .pkg h3{font-family:'Playfair Display',serif;font-size:30px}
+  .pkg .who{color:var(--muted);font-size:14px;margin-top:6px;min-height:40px}
+  .pkg .from{margin:22px 0 8px;font-size:13px;color:var(--gold);letter-spacing:.1em;text-transform:uppercase}
+  .pkg .amt{font-family:'Playfair Display',serif;font-size:42px;line-height:1}
+  .pkg .amt small{font-size:15px;color:var(--muted);font-family:'Space Grotesk',sans-serif}
+  .pkg ul{list-style:none;margin:24px 0 28px;display:flex;flex-direction:column;gap:12px}
+  .pkg li{display:flex;gap:12px;font-size:14.5px;color:#d9d2e0;align-items:flex-start}
+  .pkg li svg{flex:none;margin-top:3px;color:var(--gold)}
+  .pkg .pbtn{display:block;text-align:center;border:1px solid var(--gold2);color:var(--gold);padding:14px;border-radius:44px;font-weight:600;transition:background .3s,color .3s}
+  .pkg.feat .pbtn{background:linear-gradient(180deg,#f6e3b0,var(--gold2));color:#2a1f08;border-color:transparent}
+  .pkg .pbtn:hover{background:var(--gold);color:#000}
+  .chev{padding:130px 0;text-align:center;background:var(--bg);overflow:hidden}
+  .chev .arrows{display:flex;justify-content:center;gap:10px;margin-bottom:44px}
+  .chev .arrows svg{width:clamp(34px,6vw,70px);height:auto;color:var(--gold);animation:floaty 2.8s ease-in-out infinite}
+  .chev .arrows svg:nth-child(2){animation-delay:.18s}
+  .chev .arrows svg:nth-child(3){animation-delay:.36s}
+  .chev .arrows svg:nth-child(4){animation-delay:.54s}
+  .chev .arrows svg:nth-child(5){animation-delay:.72s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .chev h2{font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,76px);line-height:1.05;max-width:17ch;margin:0 auto}
+  .chev h2 .it{font-style:italic;color:var(--gold)}
+  .chev p{margin:26px auto 0;max-width:56ch;color:var(--muted);font-weight:300;font-size:17px}
+  .closing{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
+  .closing-bg{position:absolute;inset:-12% 0;z-index:-2;will-change:transform}
+  .closing-bg img{width:100%;height:100%;object-fit:cover}
+  .closing::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(9,7,10,.92),rgba(9,7,10,.55) 55%,rgba(9,7,10,.25))}
+  .closing h2{font-family:'Playfair Display',serif;font-size:clamp(40px,8vw,108px);line-height:.98;max-width:14ch}
+  .closing h2 .it{font-style:italic;color:var(--gold)}
+  .closing p{margin-top:24px;max-width:46ch;color:#ece6dd;font-weight:300;font-size:18px}
+  .contact{padding:120px 0 80px;background:var(--bg2);border-top:1px solid var(--line)}
+  .contact-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:70px;align-items:start}
+  .contact h2{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,64px);line-height:1.02}
+  .contact .lead{color:var(--muted);margin-top:20px;max-width:42ch;font-weight:300}
+  .contact .info{margin-top:40px;display:flex;flex-direction:column;gap:18px}
+  .contact .info div{display:flex;flex-direction:column}
+  .contact .info span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .contact .info a,.contact .info b{font-size:19px;font-weight:500;margin-top:4px}
+  form{display:flex;flex-direction:column;gap:16px}
+  form .f2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  form input,form textarea,form select{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;color:var(--text);font-family:inherit;font-size:15px;outline:none;transition:border-color .3s}
+  form select option{color:#000}
+  form input:focus,form textarea:focus,form select:focus{border-color:var(--gold2)}
+  form input.locked{border-color:var(--gold2);color:var(--gold)}
+  form textarea{min-height:120px;resize:vertical}
+  form button{background:linear-gradient(180deg,#f6e3b0,var(--gold2));color:#2a1f08;border:none;border-radius:46px;padding:17px;font-family:inherit;font-weight:600;font-size:16px;cursor:pointer;transition:transform .25s}
+  form button:hover{transform:translateY(-2px)}
+  footer{background:var(--bg);overflow:hidden}
+  .foot-mark{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(64px,19vw,260px);line-height:.8;text-align:center;letter-spacing:.06em;padding:40px 0 10px;color:transparent;-webkit-text-stroke:1px rgba(233,200,122,.28)}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;padding:30px 0 50px;border-top:1px solid var(--line)}
+  .foot small{color:var(--muted);font-size:13px}
+  .foot nav{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+  .foot nav a:hover{color:var(--gold)}
+  @media(max-width:900px){
+    nav.links,.nav-cta{display:none}.burger{display:flex}
+    .grid,.pkg-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr;gap:40px}
+    .stat-grid{grid-template-columns:1fr 1fr;gap:30px}
+    .svc-stage{height:auto;padding:60px 0}.svc-stage .visual{display:none}
+    .svc-words .item{opacity:1}.svc-words .item h3{color:var(--gold)}.svc-words .desc{min-height:auto}
+    .sky{height:auto}.sky .sticky{position:relative;height:80vh}
+    .pkg-grid{grid-template-columns:1fr}
+    .cal-cell .dot{display:none}
+  }
+  @media(max-width:600px){
+    .wrap{padding:0 20px}header.nav{padding:16px 20px}
+    .grid{grid-template-columns:1fr}form .f2{grid-template-columns:1fr}.searchbar .seg{min-width:45%}
+    .cal-wrap{padding:20px 16px}.cal-grid{gap:5px}.cal-cell{border-radius:9px;font-size:13px}
+    .hero{min-height:100svh;justify-content:flex-end;padding:118px 0 42px}
+    .hero .kick{font-size:11px;letter-spacing:.22em;margin-bottom:12px}
+    .hero h1{font-size:clamp(33px,9.6vw,54px);line-height:1.02;max-width:100%}
+    .hero p.sub{margin-top:16px;font-size:15px;max-width:100%}
+    .searchbar{margin-top:22px;gap:4px}
+    .searchbar .seg{padding:9px 12px;min-width:46%}
+    .searchbar .go{width:100%;height:48px}
+    .scrollcue{display:none}
+    .logo{letter-spacing:.22em;font-size:22px}
+    .logo s{display:none}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}.mask>*{transform:none;transition:none}
+    .marquee .track,.chev .arrows svg{animation:none}#fx{display:none}
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="cursor"></div>
+<canvas id="fx"></canvas>
+
+<header class="nav" id="nav">
+  <div class="logo">FEST<b>A</b><s>Banquetes</s></div>
+  <nav class="links">
+    <a href="#eventos">Eventos</a><a href="#espacios">Espacios</a>
+    <a href="#agenda">Agenda</a><a href="#paquetes">Paquetes</a><a href="#contacto">Contacto</a>
+  </nav>
+  <a href="#agenda" class="nav-cta">Ver disponibilidad</a>
+  <div class="burger" onclick="var l=document.querySelector('nav.links');l.style.display=(l.style.display==='flex'?'none':'flex')"><span></span><span></span><span></span></div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=2000&auto=format&fit=crop" alt="Salón de eventos iluminado"></div>
+  <div class="wrap">
+    <div class="kick reveal">Salón de Eventos · Desde 1998</div>
+    <h1><span class="mask"><span>Donde las noches</span></span><span class="mask"><span>se vuelven <span class="it gold-fill">para siempre</span></span></span></h1>
+    <p class="sub reveal">Bodas de ensueño, XV años inolvidables y eventos que tu gente recordará por años. Un salón, mil maneras de celebrar — y un equipo que cuida cada detalle por ti.</p>
+    <div class="searchbar reveal">
+      <div class="seg"><label>Tipo de evento</label><select id="hEvent"><option>Boda</option><option>XV Años</option><option>Corporativo</option><option>Cumpleaños</option><option>Graduación</option></select></div>
+      <div class="seg"><label>Invitados</label><select><option>50 – 100</option><option>100 – 200</option><option>200 – 350</option><option>350 – 500</option></select></div>
+      <div class="seg"><label>Fecha tentativa</label><input type="date" id="hDate"></div>
+      <button class="go" aria-label="Consultar disponibilidad" onclick="document.getElementById('agenda').scrollIntoView({behavior:'smooth'})">→</button>
+    </div>
+    <div class="row reveal" style="margin-top:22px">
+      <a href="#espacios" class="btn" data-magnetic>Conoce el salón</a>
+      <a href="#agenda" class="btn ghost" data-magnetic>Ver disponibilidad</a>
+    </div>
+  </div>
+  <div class="scrollcue">Descubre<i></i></div>
+</section>
+
+<div class="marquee">
+  <div class="track" id="track">
+    <span><b>Bodas</b> <em>✦</em> XV Años <em>✦</em> <b>Corporativos</b> <em>✦</em> Cumpleaños <em>✦</em> <b>Graduaciones</b> <em>✦</em> Aniversarios <em>✦</em> </span>
+    <span><b>Bodas</b> <em>✦</em> XV Años <em>✦</em> <b>Corporativos</b> <em>✦</em> Cumpleaños <em>✦</em> <b>Graduaciones</b> <em>✦</em> Aniversarios <em>✦</em> </span>
+  </div>
+</div>
+
+<section class="services" id="eventos">
+  <div class="wrap svc-head reveal">
+    <div class="eyebrow">Lo que celebramos</div>
+    <h2 class="sec-title">Cada celebración es distinta. Nuestra obsesión por el detalle, no.</h2>
+  </div>
+  <div class="svc-stage" id="svcStage">
+    <div class="wrap">
+      <div class="svc-words">
+        <div class="item on" data-i="0"><span class="n">01</span><h3>Bodas</h3></div>
+        <div class="item" data-i="1"><span class="n">02</span><h3>XV Años</h3></div>
+        <div class="item" data-i="2"><span class="n">03</span><h3>Corporativos</h3></div>
+        <p class="desc" id="svcDesc">Del primer brindis al último baile. Montaje, iluminación, banquete y coordinación para que tú solo te dediques a decir "acepto" y disfrutar.</p>
+      </div>
+    </div>
+    <div class="visual">
+      <img class="on" src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=900&auto=format&fit=crop" alt="Boda">
+      <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=900&auto=format&fit=crop" alt="XV años">
+      <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=900&auto=format&fit=crop" alt="Evento corporativo">
+    </div>
+  </div>
+</section>
+
+<section class="featured" id="espacios">
+  <div class="wrap">
+    <div class="feat-head reveal">
+      <div><div class="eyebrow">Nuestros espacios</div><h2 class="sec-title">Salones que se transforman para ti.</h2></div>
+      <a href="#agenda" class="btn ghost" data-magnetic>Agenda un tour →</a>
+    </div>
+    <div class="grid">
+      <article class="card reveal"><div class="ph"><span class="tag">Salón Imperial</span><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 500 invitados</div><div class="addr">Gran salón con doble altura y candelabros</div><div class="meta"><span><b>800</b> m²</span><span><b>Pista</b> central</span><span><b>Valet</b> incluido</span></div></div></article>
+      <article class="card reveal"><div class="ph"><span class="tag">Terraza Jardín</span><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 250 invitados</div><div class="addr">Al aire libre, ideal para ceremonia y cóctel</div><div class="meta"><span><b>Jardín</b></span><span><b>Carpa</b> opcional</span><span><b>Atardecer</b></span></div></div></article>
+      <article class="card reveal"><div class="ph"><span class="tag">Salón Lumière</span><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 180 invitados</div><div class="addr">Íntimo y elegante, perfecto para XV años</div><div class="meta"><span><b>Escenario</b></span><span><b>LED</b> show</span><span><b>Lounge</b></span></div></div></article>
+      <article class="card reveal"><div class="ph"><span class="tag">Salón Cristal</span><img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 120 invitados</div><div class="addr">Luz natural y ventanales de piso a techo</div><div class="meta"><span><b>Cóctel</b></span><span><b>Brunch</b></span><span><b>Corporativo</b></span></div></div></article>
+      <article class="card reveal"><div class="ph"><span class="tag">Roof Garden</span><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 150 invitados</div><div class="addr">Terraza panorámica para fiestas de noche</div><div class="meta"><span><b>Vista</b> ciudad</span><span><b>Bar</b></span><span><b>DJ</b></span></div></div></article>
+      <article class="card reveal"><div class="ph"><span class="tag">Capilla</span><img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=900&auto=format&fit=crop" alt=""></div><div class="body"><div class="price">Hasta 200 invitados</div><div class="addr">Ceremonia religiosa dentro del mismo recinto</div><div class="meta"><span><b>Altar</b></span><span><b>Coro</b></span><span><b>Acceso</b> directo</span></div></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="stats"><div class="wrap"><div class="stat-grid">
+  <div class="stat reveal"><div class="num"><span class="gold-fill" data-count="2400" data-suffix="+">0</span></div><div class="lab">Eventos celebrados</div></div>
+  <div class="stat reveal"><div class="num"><span class="gold-fill" data-count="500" data-suffix="">0</span></div><div class="lab">Invitados de capacidad</div></div>
+  <div class="stat reveal"><div class="num"><span class="gold-fill" data-count="27" data-suffix=" años">0</span></div><div class="lab">Creando recuerdos</div></div>
+  <div class="stat reveal"><div class="num"><span class="gold-fill" data-count="6" data-suffix="">0</span></div><div class="lab">Espacios versátiles</div></div>
+</div></div></section>
+
+<section class="agenda" id="agenda">
+  <div class="wrap">
+    <div class="feat-head agenda-head reveal">
+      <div class="eyebrow">Disponibilidad</div>
+      <h2 class="sec-title">Revisa qué fechas están libres y aparta la tuya.</h2>
+    </div>
+    <div class="cal-wrap reveal">
+      <div class="cal-top">
+        <h3 id="calTitle">—</h3>
+        <div class="cal-nav">
+          <button id="calPrev" aria-label="Mes anterior">‹</button>
+          <button id="calNext" aria-label="Mes siguiente">›</button>
+        </div>
+      </div>
+      <div class="cal-grid" id="calDow"></div>
+      <div class="cal-grid" id="calGrid" style="margin-top:8px"></div>
+      <div class="cal-legend">
+        <span><i style="background:rgba(233,200,122,.5);border:1px solid var(--gold2)"></i>Disponible</span>
+        <span><i style="background:rgba(231,89,110,.4);border:1px solid var(--busy)"></i>Ocupado</span>
+        <span><i style="background:rgba(255,255,255,.06)"></i>No disponible</span>
+      </div>
+      <div class="cal-note">Toca una fecha <b>disponible</b> para apartarla. La disponibilidad se confirma al contactarnos.</div>
+    </div>
+  </div>
+</section>
+
+<section class="sky" id="sky">
+  <div class="sticky">
+    <div class="layer" id="skyLayer" style="background-image:url('https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1800&auto=format&fit=crop')"></div>
+    <div class="grad" id="skyGrad"></div>
+    <div class="inner"><div class="big display" id="skyBig">Celebra</div><div class="small" id="skySmall">como nunca antes</div></div>
+  </div>
+</section>
+
+<section class="packages" id="paquetes">
+  <div class="wrap">
+    <div class="feat-head reveal">
+      <div><div class="eyebrow">Paquetes todo incluido</div><h2 class="sec-title">Elige tu noche. Nosotros ponemos el resto.</h2></div>
+    </div>
+    <div class="pkg-grid">
+      <article class="pkg reveal">
+        <h3>Esencia</h3>
+        <p class="who">Reuniones íntimas y celebraciones de día.</p>
+        <div class="from">Desde</div>
+        <div class="amt">$890 <small>/ persona</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Salón 5 horas</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Banquete 3 tiempos</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Mobiliario y mantelería</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Iluminación base</li>
+        </ul>
+        <a href="#contacto" class="pbtn" data-magnetic>Cotizar</a>
+      </article>
+      <article class="pkg feat reveal">
+        <div class="pop">Más elegido</div>
+        <h3>Gran Gala</h3>
+        <p class="who">El equilibrio perfecto para bodas y XV años.</p>
+        <div class="from">Desde</div>
+        <div class="amt">$1,450 <small>/ persona</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Salón 8 horas + hora extra</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Banquete gourmet + barra libre</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>DJ, pista y show de luces</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Coordinador de evento</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Valet parking</li>
+        </ul>
+        <a href="#contacto" class="pbtn" data-magnetic>Cotizar</a>
+      </article>
+      <article class="pkg reveal">
+        <h3>Imperial</h3>
+        <p class="who">Producción de lujo, sin techo para tu visión.</p>
+        <div class="from">Desde</div>
+        <div class="amt">$2,300 <small>/ persona</small></div>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Salón abierto sin límite de horario</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Menú de autor + maridaje</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Escenografía y florería premium</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Wedding planner dedicado</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Foto, video y suite nupcial</li>
+        </ul>
+        <a href="#contacto" class="pbtn" data-magnetic>Cotizar</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="chev">
+  <div class="wrap">
+    <div class="arrows">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.6 6.6L21 11l-6.4 2.4L12 20l-2.6-6.6L3 11l6.4-2.4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    </div>
+    <h2 class="reveal">Un salón no se mide en metros. Se mide en <span class="it">momentos.</span></h2>
+    <p class="reveal">El nudo en la garganta del primer baile. Las luces bajando justo a tiempo. La carcajada que nadie esperaba. Llevamos 27 años perfeccionando esos instantes — para que el tuyo salga exactamente como lo soñaste.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing-bg"><img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?q=80&w=2000&auto=format&fit=crop" alt=""></div>
+  <div class="wrap">
+    <h2><span class="mask"><span>Tu fecha soñada</span></span><span class="mask"><span>te está <span class="it">esperando.</span></span></span></h2>
+    <p class="reveal">Las mejores fechas se reservan con meses de anticipación. Aparta la tuya hoy y empecemos a planear la noche que tu gente no va a olvidar.</p>
+    <div class="row reveal" style="margin-top:36px"><a href="#agenda" class="btn" data-magnetic>Reserva tu fecha</a></div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <div class="eyebrow">Agenda tu visita</div>
+      <h2>Ven, conócelo, imagínalo lleno.</h2>
+      <p class="lead">Déjanos tus datos y un coordinador te contacta en menos de 24 horas para agendar un recorrido sin costo y armar tu cotización a la medida.</p>
+      <div class="info">
+        <div><span>Teléfono / WhatsApp</span><a href="tel:+520000000000">+52 000 000 0000</a></div>
+        <div><span>Correo</span><a href="mailto:eventos@festabanquetes.mx">eventos@festabanquetes.mx</a></div>
+        <div><span>Dirección</span><b>Av. de las Celebraciones 100, Tu Ciudad</b></div>
+      </div>
+    </div>
+    <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('button').textContent='¡Gracias! Te contactamos pronto.';">
+      <div class="f2"><input type="text" placeholder="Nombre" required><input type="tel" placeholder="Teléfono / WhatsApp" required></div>
+      <div class="f2">
+        <select id="cEvent" required><option value="" disabled selected>Tipo de evento</option><option>Boda</option><option>XV Años</option><option>Corporativo</option><option>Cumpleaños</option><option>Otro</option></select>
+        <input type="date" id="cDate" required>
+      </div>
+      <input type="email" placeholder="Correo electrónico" required>
+      <textarea placeholder="Cuéntanos de tu evento: número de invitados, ideas, presupuesto..."></textarea>
+      <button type="submit" data-magnetic>Solicitar cotización</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-mark">FESTA</div>
+  <div class="wrap foot">
+    <small>© 2026 FESTA Banquetes. Todos los derechos reservados.</small>
+    <nav><a href="#eventos">Eventos</a><a href="#espacios">Espacios</a><a href="#agenda">Agenda</a><a href="#paquetes">Paquetes</a><a href="#contacto">Contacto</a></nav>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+<script>
+/* AGENDA — fechas ocupadas (AAAA-MM-DD). Edítalas al cerrar cada evento.
+   Para vincular Google Calendar: pega un endpoint que devuelva un JSON
+   de fechas ocupadas en GCAL_FEED_URL y loadBusyFromGoogle() las suma. */
+var OCCUPIED = [
+  '2026-06-13','2026-06-14','2026-06-20','2026-06-27',
+  '2026-07-04','2026-07-11','2026-07-18','2026-07-25',
+  '2026-08-01','2026-08-08','2026-08-15','2026-08-22','2026-08-29',
+  '2026-09-05','2026-09-12','2026-09-19','2026-09-26',
+  '2026-10-03','2026-10-10','2026-10-17','2026-10-31',
+  '2026-11-07','2026-11-14','2026-11-21',
+  '2026-12-05','2026-12-12','2026-12-19','2026-12-31'
+];
+var GCAL_FEED_URL = '';
+
+document.addEventListener('DOMContentLoaded',function(){
+  var hasGSAP = window.gsap && window.ScrollTrigger;
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var isTouch = window.matchMedia('(hover:none)').matches || ('ontouchstart' in window);
+
+  /* REVEALS + CONTADORES (JS nativo: siempre funciona, también en apps) */
+  (function(){
+    var els=document.querySelectorAll('.reveal,.mask');
+    if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});}
+    else{
+      var io=new IntersectionObserver(function(en){en.forEach(function(x){
+        if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},
+        {threshold:.1,rootMargin:'0px 0px -6% 0px'});
+      els.forEach(function(e){io.observe(e)});
+    }
+    document.querySelectorAll('[data-count]').forEach(function(el){
+      var end=+el.dataset.count, suf=el.dataset.suffix||'', ran=false;
+      function run(){ if(ran)return; ran=true; var t0=null;
+        function step(ts){ if(!t0)t0=ts; var p=Math.min(1,(ts-t0)/1600); var e=1-Math.pow(1-p,3);
+          el.textContent=Math.round(end*e).toLocaleString('es-MX')+suf; if(p<1)requestAnimationFrame(step); }
+        requestAnimationFrame(step);
+      }
+      if(!('IntersectionObserver' in window)){run();return;}
+      var io2=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){run();io2.disconnect();}});},{threshold:.5});
+      io2.observe(el);
+    });
+  })();
+
+  /* particles */
+  (function(){
+    if(reduce) return;
+    var c=document.getElementById('fx'); if(!c) return; var ctx=c.getContext('2d');
+    var w,h,parts=[];
+    function size(){w=c.width=innerWidth;h=c.height=innerHeight;}
+    size(); addEventListener('resize',size);
+    var N=Math.min(60,Math.round(innerWidth/26));
+    for(var i=0;i<N;i++)parts.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,s:Math.random()*.4+.12,o:Math.random()*.6+.2,d:Math.random()*Math.PI*2});
+    function tick(){ctx.clearRect(0,0,w,h);
+      for(var i=0;i<parts.length;i++){var p=parts[i];p.y-=p.s;p.x+=Math.sin(p.d+p.y*.01)*.25;
+        if(p.y<-6){p.y=h+6;p.x=Math.random()*w;}
+        ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.28);
+        ctx.fillStyle='rgba(233,200,122,'+p.o+')';ctx.shadowColor='rgba(233,200,122,.8)';ctx.shadowBlur=6;ctx.fill();}
+      requestAnimationFrame(tick);}
+    tick();
+  })();
+
+  /* cursor + magnetic (solo con mouse) */
+  if(!isTouch){
+    var cur=document.getElementById('cursor');
+    if(cur){
+      var x=innerWidth/2,y=innerHeight/2,cx=x,cy=y;
+      addEventListener('mousemove',function(e){x=e.clientX;y=e.clientY;cur.style.opacity=1;});
+      (function loop(){cx+=(x-cx)*.18;cy+=(y-cy)*.18;cur.style.transform='translate('+cx+'px,'+cy+'px) translate(-50%,-50%)';requestAnimationFrame(loop);})();
+      document.querySelectorAll('a,button,.card,.pkg,.svc-words .item,.cal-cell.free').forEach(function(el){
+        el.addEventListener('mouseenter',function(){cur.classList.add('hot')});
+        el.addEventListener('mouseleave',function(){cur.classList.remove('hot')});
+      });
+      document.querySelectorAll('[data-magnetic]').forEach(function(el){
+        el.addEventListener('mousemove',function(e){var r=el.getBoundingClientRect();
+          el.style.transform='translate('+(e.clientX-r.left-r.width/2)*.3+'px,'+(e.clientY-r.top-r.height/2)*.4+'px)';});
+        el.addEventListener('mouseleave',function(){el.style.transform='';});
+      });
+    }
+  }
+
+  /* nav bg */
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40)});
+
+  /* CALENDARIO */
+  (function(){
+    var grid=document.getElementById('calGrid'), dowEl=document.getElementById('calDow'),
+        titleEl=document.getElementById('calTitle'),
+        prev=document.getElementById('calPrev'), next=document.getElementById('calNext');
+    if(!grid) return;
+    var MES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+    var DOW=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+    dowEl.innerHTML=DOW.map(function(d){return '<div class="cal-dow">'+d+'</div>'}).join('');
+    var today=new Date(); today.setHours(0,0,0,0);
+    var view=new Date(today.getFullYear(),today.getMonth(),1);
+    var minMonth=new Date(today.getFullYear(),today.getMonth(),1);
+    function pad(n){return (n<10?'0':'')+n;}
+    function key(y,m,d){return y+'-'+pad(m+1)+'-'+pad(d);}
+    function render(){
+      var y=view.getFullYear(), m=view.getMonth();
+      titleEl.textContent=MES[m]+' '+y;
+      prev.disabled = (y===minMonth.getFullYear() && m===minMonth.getMonth());
+      var first=new Date(y,m,1);
+      var lead=(first.getDay()+6)%7;
+      var days=new Date(y,m+1,0).getDate();
+      var cells='';
+      for(var i=0;i<lead;i++) cells+='<div class="cal-cell empty"></div>';
+      for(var d=1;d<=days;d++){
+        var k=key(y,m,d);
+        var dt=new Date(y,m,d); dt.setHours(0,0,0,0);
+        var cls,label;
+        if(dt<today){cls='past';label='';}
+        else if(OCCUPIED.indexOf(k)>-1){cls='busy';label='<span class="dot">Ocupado</span>';}
+        else{cls='free';label='<span class="dot">Libre</span>';}
+        cells+='<div class="cal-cell '+cls+'" data-date="'+k+'">'+d+label+'</div>';
+      }
+      grid.innerHTML=cells;
+      grid.querySelectorAll('.cal-cell.free').forEach(function(c){
+        c.addEventListener('click',function(){pick(c.getAttribute('data-date'))});
+      });
+    }
+    function pick(dateStr){
+      var cDate=document.getElementById('cDate');
+      if(cDate){cDate.value=dateStr; cDate.classList.add('locked');}
+      var hEvent=document.getElementById('hEvent'), cEvent=document.getElementById('cEvent');
+      if(hEvent && cEvent){cEvent.value=hEvent.value;}
+      var hDate=document.getElementById('hDate'); if(hDate) hDate.value=dateStr;
+      var dest=document.getElementById('contacto');
+      if(window.__lenis){window.__lenis.scrollTo(dest,{offset:-10});}
+      else if(dest){dest.scrollIntoView({behavior:'smooth'});}
+    }
+    prev.addEventListener('click',function(){view.setMonth(view.getMonth()-1);render();});
+    next.addEventListener('click',function(){view.setMonth(view.getMonth()+1);render();});
+    function loadBusyFromGoogle(){
+      if(!GCAL_FEED_URL) return;
+      fetch(GCAL_FEED_URL).then(function(r){return r.json();}).then(function(list){
+        if(Array.isArray(list)){list.forEach(function(d){if(OCCUPIED.indexOf(d)<0)OCCUPIED.push(d);});render();}
+      }).catch(function(){});
+    }
+    render();
+    loadBusyFromGoogle();
+  })();
+
+  /* EFECTOS EXTRA (GSAP) — mejoran, no son obligatorios */
+  if(!hasGSAP){return;}
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ignoreMobileResize:true});
+
+  if(window.Lenis && !isTouch){
+    var lenis=new Lenis({duration:1.15,smoothWheel:true});
+    window.__lenis=lenis;
+    lenis.on('scroll',ScrollTrigger.update);
+    gsap.ticker.add(function(t){lenis.raf(t*1000)});
+    gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(function(a){
+      a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));
+        if(t){e.preventDefault();lenis.scrollTo(t,{offset:-10})}});
+    });
+  }
+
+  gsap.to('#progress',{scaleX:1,ease:'none',scrollTrigger:{trigger:document.body,start:'top top',end:'bottom bottom',scrub:.3}});
+  gsap.to('.hero-bg',{yPercent:18,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.closing-bg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.closing',start:'top bottom',end:'bottom top',scrub:true}});
+
+  var descs=[
+    'Del primer brindis al último baile. Montaje, iluminación, banquete y coordinación para que tú solo te dediques a decir "acepto" y disfrutar.',
+    'La entrada triunfal, el vals, el chambelán. Producción de luces, pista interactiva y una noche que tu festejada va a presumir por años.',
+    'Lanzamientos, cenas de fin de año y convenciones con la formalidad que tu marca merece — audio, proyección y catering de primer nivel.'
+  ];
+  var items=gsap.utils.toArray('.svc-words .item'),
+      imgs=gsap.utils.toArray('.svc-stage .visual img'),
+      descEl=document.getElementById('svcDesc'), curS=-1;
+  function setSvc(i){ if(i===curS)return; curS=i;
+    items.forEach(function(it,k){it.classList.toggle('on',k===i)});
+    imgs.forEach(function(im,k){im.classList.toggle('on',k===i)});
+    if(descEl){gsap.fromTo(descEl,{opacity:0,y:12},{opacity:1,y:0,duration:.5});descEl.textContent=descs[i];}
+  }
+  if(window.matchMedia('(min-width:901px)').matches){
+    ScrollTrigger.create({trigger:'#svcStage',start:'top top',end:'+=200%',pin:true,scrub:true,
+      onUpdate:function(self){setSvc(Math.min(2,Math.floor(self.progress*3)))}});
+  } else {
+    items.forEach(function(it,k){ScrollTrigger.create({trigger:it,start:'top 70%',onEnter:function(){setSvc(k)},onEnterBack:function(){setSvc(k)}})});
+  }
+
+  var skyTl=gsap.timeline({scrollTrigger:{trigger:'#sky',start:'top top',end:'bottom bottom',scrub:.6}});
+  gsap.set('#skyBig',{scale:.45,y:40});
+  gsap.set('#skyLayer',{scale:1.25,yPercent:8,opacity:.35});
+  gsap.set('#skySmall',{opacity:0});
+  skyTl.to('#skyLayer',{scale:1,yPercent:0,opacity:1,ease:'none'},0)
+       .to('#skyGrad',{opacity:.15,ease:'none'},0)
+       .to('#skyBig',{scale:1,y:0,ease:'none'},0)
+       .to('#skySmall',{opacity:1,ease:'none'},.3);
+
+  gsap.fromTo('.foot-mark',{xPercent:-5},{xPercent:5,ease:'none',scrollTrigger:{trigger:'footer',start:'top bottom',end:'bottom bottom',scrub:true}});
+
+  ScrollTrigger.refresh();
+});
+</script>
+</body>
+</html>
