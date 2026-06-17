@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mónica Betancourt · Excelencia Inmobiliaria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#091320;--gold:#c9a86a;--gold2:#e6cf99;--text:#eef2f7;--muted:#9aa9bd;--line:rgba(201,168,106,.28);--wa:#25d366;--shadow:0 28px 70px -30px rgba(0,0,0,.85);--glass:rgba(13,26,44,.55)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(160deg,#0a1626 0%,#091320 45%,#070f1a 100%)}
+body::after{content:"";position:fixed;inset:-40px;z-index:-1;background:url('inmueble-006-1.jpg') center/cover;filter:blur(34px) brightness(.26) saturate(.92);transform:scale(1.08);opacity:.85}
+h1,h2,h3{font-family:'Cormorant Garamond',serif;font-weight:600;margin:0;letter-spacing:.3px}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1280px;margin:0 auto;padding:0 26px}
+.serif-it{font-style:italic;font-weight:500}
+.top{position:fixed;top:0;left:0;right:0;z-index:60;transition:.4s;border-bottom:1px solid transparent}
+.top.scrolled{background:rgba(9,19,32,.7);backdrop-filter:blur(14px);border-bottom-color:var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:14px}
+.brand{display:flex;align-items:center;gap:13px}
+.brand .mark{height:50px;width:auto;display:block}
+.brand b{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;letter-spacing:1px;white-space:nowrap;color:#fff}
+.brand small{display:block;font-size:9px;letter-spacing:2.6px;color:var(--gold);text-transform:uppercase}
+.topcta{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:11.5px;letter-spacing:1.4px;text-transform:uppercase;border:1px solid var(--gold);background:var(--gold);color:#15110a;font-weight:600;padding:11px 20px;border-radius:40px;transition:.25s;cursor:pointer}
+.topcta:hover{background:var(--gold2)}.topcta svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:540px){.brand b{font-size:17px}.brand .mark{height:42px}.topcta .lbl{display:none}.topcta{padding:11px 13px}}
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;padding:110px 22px 60px;background:linear-gradient(180deg,rgba(7,15,26,.78) 0%,rgba(7,15,26,.4) 38%,rgba(7,15,26,.85) 100%),url('inmueble-006-1.jpg') center/cover}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 30%,transparent 40%,rgba(6,12,22,.72) 100%);pointer-events:none}
+.hero>*{position:relative;z-index:2}
+.hero .corners{position:absolute;top:96px;left:0;right:0;display:flex;justify-content:space-between;padding:0 40px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.8);z-index:2}
+@media(max-width:600px){.hero .corners{padding:0 18px;font-size:9px;letter-spacing:2px}}
+.hero .eyebrow{font-size:14px;letter-spacing:7px;text-transform:uppercase;color:var(--gold2);font-weight:400;margin-bottom:10px}
+.hero h1{font-size:clamp(46px,9vw,104px);line-height:.92;font-weight:600;text-shadow:0 6px 40px rgba(0,0,0,.5)}
+.hero h1 .l2{display:block;margin-top:2px}
+.heropills{display:flex;flex-wrap:wrap;gap:13px;justify-content:center;max-width:620px;margin:30px auto 0}
+.hpill{flex:1 1 120px;max-width:140px;border:1px solid rgba(255,255,255,.4);border-radius:40px;padding:13px 10px;font-size:14px;letter-spacing:1px;background:rgba(255,255,255,.06);backdrop-filter:blur(4px)}
+.herosub{max-width:55ch;margin:22px auto 0;font-size:17px;color:#e7e1d4;font-weight:300}
+.herocta{display:flex;gap:13px;flex-wrap:wrap;justify-content:center;margin-top:28px}
+.btn-gold{display:inline-flex;align-items:center;gap:9px;background:var(--gold);color:#15110a;padding:15px 30px;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;font-weight:500;border:1px solid var(--gold);transition:.3s;cursor:pointer;border-radius:3px}
+.btn-gold:hover{background:var(--gold2);border-color:var(--gold2)}
+.btn-out{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.5);color:#fff;padding:15px 30px;font-size:12.5px;letter-spacing:2px;text-transform:uppercase;transition:.3s;cursor:pointer;background:rgba(255,255,255,.04);border-radius:3px}
+.btn-out:hover{background:rgba(255,255,255,.12)}
+.btn-gold svg,.btn-out svg{width:17px;height:17px}
+.scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);z-index:2;animation:fl 2.4s ease-in-out infinite}
+@keyframes fl{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+.fab-wa{position:fixed;right:22px;bottom:22px;z-index:130;width:62px;height:62px;border-radius:50%;background:var(--wa);display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.45);transition:transform .25s;animation:pulse 2.8s infinite}
+.fab-wa svg{width:34px;height:34px;fill:#fff}
+.fab-wa:hover{transform:scale(1.09)}
+@keyframes pulse{0%{box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,.5)}70%{box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 18px rgba(37,211,102,0)}100%{box-shadow:0 12px 30px rgba(0,0,0,.45),0 0 0 0 rgba(37,211,102,0)}}
+@media(max-width:540px){.fab-wa{width:56px;height:56px;right:16px;bottom:16px}}
+.modewrap{display:flex;justify-content:center;padding:70px 0 0}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:50px;padding:5px;background:var(--glass);backdrop-filter:blur(8px);gap:4px}
+.seg button{font-family:'Jost';font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);background:transparent;border:none;padding:13px 28px;border-radius:50px;cursor:pointer;transition:.3s;display:inline-flex;align-items:center;gap:9px}
+.seg button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.seg button.on{background:var(--gold);color:#15110a;font-weight:500}
+@media(max-width:520px){.seg button{padding:12px 16px;font-size:11.5px}}
+.intro{text-align:center;padding:42px 0 8px}
+.intro .eyebrow{font-size:12px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.intro h2{font-size:clamp(30px,4.4vw,50px);color:#fff}
+.intro p{max-width:60ch;margin:14px auto 0;color:var(--muted);font-size:16px}
+.filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;padding:30px 0 6px}
+.f{font-family:'Jost';font-size:12px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);background:var(--glass);border:1px solid var(--line);padding:10px 19px;border-radius:40px;cursor:pointer;transition:.25s;backdrop-filter:blur(6px)}
+.f:hover{border-color:var(--gold);color:var(--text)}.f.on{background:var(--gold);color:#15110a;border-color:var(--gold);font-weight:500}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;padding:30px 0 90px}
+@media(max-width:1080px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.card{background:var(--glass);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s,box-shadow .35s,border-color .35s}
+.card.in{opacity:1;transform:none}
+.card:hover{box-shadow:var(--shadow);transform:translateY(-5px);border-color:var(--gold)}
+.gal-main{position:relative;height:240px;background:#0a1626 center/cover no-repeat;transition:.4s}
+.badge{position:absolute;left:13px;top:13px;background:rgba(7,15,26,.78);color:var(--gold2);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px 12px;border:1px solid var(--line)}
+.op-badge{position:absolute;right:13px;top:13px;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px 12px;color:#15110a;font-weight:600}
+.op-venta{background:var(--gold)}.op-renta{background:#7fb38a}
+.gal-th{display:flex;gap:6px;padding:6px;background:rgba(7,15,26,.55)}
+.gal-th .th{flex:1;height:50px;background:#0a1626 center/cover no-repeat;border:none;cursor:pointer;opacity:.55;transition:.25s;border-bottom:2px solid transparent;border-radius:3px}
+.gal-th .th:hover{opacity:.85}.gal-th .th.on{opacity:1;border-bottom-color:var(--gold)}
+.body{padding:20px 20px 22px;display:flex;flex-direction:column;flex:1}
+.loc{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
+.body h3{font-size:24px;line-height:1.15;margin-bottom:9px;color:#fff}
+.price{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--gold2);display:flex;align-items:baseline;gap:11px;flex-wrap:wrap}
+.mant{font-family:'Jost';font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:400}
+.specs{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0;padding:15px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.spec{flex:1 1 66px;min-width:60px;text-align:center}
+.spec svg{width:21px;height:21px;fill:none;stroke:var(--gold);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;opacity:.92}
+.spec-v{font-size:14px;font-weight:500;margin-top:4px;color:#fff}
+.spec-l{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.desc{font-size:13.8px;color:var(--muted);margin:0 0 14px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.chip{font-size:10.5px;letter-spacing:.4px;color:#cdd6e2;background:rgba(255,255,255,.04);border:1px solid var(--line);padding:5px 10px;border-radius:30px}
+.actions{margin-top:auto;display:flex;gap:8px}
+.btn{flex:1;text-align:center;background:var(--gold);color:#15110a;padding:12px 10px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:600;border:1px solid var(--gold);transition:.3s;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.btn:hover{background:var(--gold2);border-color:var(--gold2)}
+.btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:transparent;color:#fff;padding:12px 13px;font-size:11px;letter-spacing:1.2px;text-transform:uppercase;border:1px solid var(--wa);transition:.3s}
+.btn-wa svg{width:16px;height:16px;fill:#25d366}
+.btn-wa:hover{background:var(--wa)}.btn-wa:hover svg{fill:#fff}
+.vficha{display:inline-block;margin-top:11px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);transition:.25s}
+.vficha:hover{color:var(--gold2)}
+#vender{padding:20px 0 90px}
+.seller-hero{text-align:center;max-width:780px;margin:0 auto 30px}
+.seller-hero .eyebrow{font-size:12px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.seller-hero h2{font-size:clamp(30px,4.4vw,50px);color:#fff}
+.seller-hero p{color:var(--muted);font-size:16px;margin-top:14px}
+.cotiz{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:0 auto 50px;align-items:stretch}
+@media(max-width:820px){.cotiz{grid-template-columns:1fr}}
+.cotiz-form,.cotiz-result{border:1px solid var(--line);border-radius:12px;padding:28px;background:var(--glass);backdrop-filter:blur(14px)}
+.cotiz-form h3,.cotiz-result h3{font-size:24px;color:#fff;margin-bottom:4px}
+.cotiz-form .sub{color:var(--muted);font-size:13.5px;margin-bottom:18px}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.cgrid .full{grid-column:1/-1}
+.field{display:flex;flex-direction:column;gap:6px}
+label{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--gold)}
+input,select,textarea{font-family:'Jost';font-size:14px;background:rgba(7,15,26,.6);border:1px solid var(--line);color:var(--text);padding:12px 13px;border-radius:6px;outline:none;transition:.2s;width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+.cotiz-form .btn-gold{width:100%;justify-content:center;margin-top:16px}
+.cotiz-result{display:flex;flex-direction:column;justify-content:center;text-align:center}
+.cr-empty{color:var(--muted);font-size:14px}
+.cr-empty svg{width:46px;height:46px;stroke:var(--gold);fill:none;stroke-width:1.3;opacity:.7;margin-bottom:14px}
+.cr-live{display:none}
+.cr-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.cr-range{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,3.4vw,36px);color:var(--gold2);font-weight:600;line-height:1.1}
+.cr-pm{color:var(--muted);font-size:12.5px;margin-top:8px}
+.cr-note{color:#7e8aa0;font-size:11px;margin-top:10px;line-height:1.5}
+.cr-expert{margin-top:16px;border:1px solid var(--gold);border-radius:10px;padding:18px;background:rgba(201,168,106,.08);text-align:left}
+.cr-expert-t{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--gold2);display:flex;align-items:center;gap:8px}
+.cr-expert-t svg{width:20px;height:20px;fill:var(--gold2)}
+.cr-expert p{color:#dfe5ee;font-size:13px;margin:6px 0 14px}
+.cr-form .cgrid{gap:10px}
+.cr-form .btn-gold{width:100%;justify-content:center;margin-top:12px}
+.cr-or{margin-top:10px;text-align:center}
+.cr-or button{background:transparent;border:none;color:var(--muted);font-size:11.5px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;display:inline-flex;gap:7px;align-items:center}
+.cr-or button:hover{color:var(--gold2)}.cr-or svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto}
+@media(max-width:760px){.steps{grid-template-columns:1fr}}
+.step{border:1px solid var(--line);border-radius:10px;padding:24px;background:var(--glass);backdrop-filter:blur(12px)}
+.step b{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold2);display:block}
+.step h4{margin:8px 0 6px;font-family:'Cormorant Garamond',serif;font-size:20px;color:#fff}
+.step p{color:var(--muted);font-size:13.5px;margin:0}
+.contact{background:rgba(8,15,26,.55);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:80px 0}
+.contact .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:50px;align-items:center}
+@media(max-width:820px){.contact .wrap{grid-template-columns:1fr;gap:32px}}
+.contact .eyebrow{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.contact h2{font-size:clamp(30px,4vw,46px);color:#fff}
+.contact p{color:var(--muted);max-width:50ch;margin-top:14px}
+.cbtns{display:flex;gap:11px;flex-wrap:wrap;margin-top:24px}
+.cbtn{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);color:#fff;padding:14px 22px;font-size:12px;letter-spacing:1.4px;text-transform:uppercase;transition:.3s;background:var(--glass);cursor:pointer}
+.cbtn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.cbtn.gold{border-color:var(--gold);background:var(--gold);color:#15110a;font-weight:600}.cbtn.gold:hover{background:var(--gold2)}
+.cbox{border:1px solid var(--line);padding:30px;border-radius:12px;background:var(--glass);backdrop-filter:blur(14px);display:flex;flex-direction:column;gap:12px}
+.cbox .cbox-h{font-family:'Cormorant Garamond',serif;font-size:24px;color:#fff;margin-bottom:4px}
+.cbox-btn{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:9px;padding:15px 18px;color:#fff;font-size:14px;letter-spacing:.5px;transition:.25s;background:rgba(255,255,255,.02)}
+.cbox-btn svg{width:22px;height:22px;flex:none}
+.cbox-btn .cb-t{font-weight:500}.cbox-btn .cb-s{display:block;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.cbox-btn:hover{border-color:var(--gold);transform:translateX(3px)}
+.cbox-btn.wa svg{fill:#25d366}
+.cbox-btn.wa:hover{background:rgba(37,211,102,.12)}
+.cbox-btn .ic svg{stroke:var(--gold);fill:none;stroke-width:1.7}
+.cbox-foot{font-size:11px;color:var(--muted);letter-spacing:.5px;text-align:center;margin-top:4px;line-height:1.5}
+footer{background:rgba(6,11,20,.82);backdrop-filter:blur(10px);text-align:center;padding:46px 20px;font-size:12px;letter-spacing:.5px;color:#7e8aa0;border-top:1px solid var(--line)}
+footer .foot-logo{height:64px;width:auto;display:block;margin:0 auto 12px;opacity:.95}
+footer .fb{color:#fff;font-family:'Cormorant Garamond',serif;font-size:24px;margin-bottom:2px}
+footer .ft{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:#9aa7b8;margin-bottom:4px}
+footer .fcert{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+footer .fdata{font-size:13px;color:#c5cdd9;margin-bottom:12px;line-height:1.9}
+footer .fdata a{color:#c5cdd9}footer .fdata a:hover{color:var(--gold2)}
+footer .fdata b{color:var(--gold);font-weight:400;letter-spacing:1px;text-transform:uppercase;font-size:10.5px}
+footer a:hover{color:var(--gold2)}
+.disc{max-width:70ch;margin:10px auto 0;font-size:11px;color:#566377;line-height:1.6}
+.modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,10,18,.78);backdrop-filter:blur(6px)}
+.modal.open{display:flex}
+.sheet{width:min(560px,96vw);max-height:92vh;overflow:auto;background:rgba(15,32,54,.95);backdrop-filter:blur(16px);border:1px solid var(--gold);border-radius:12px;padding:28px;box-shadow:var(--shadow)}
+.sheet .x{float:right;background:transparent;border:none;color:var(--muted);font-size:24px;cursor:pointer;line-height:1}
+.sheet .eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.sheet h3{font-size:28px;color:#fff;margin:4px 0 4px}
+.sheet .ctx{color:var(--muted);font-size:13.5px;margin-bottom:16px}
+.calhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.calhead b{font-family:'Cormorant Garamond',serif;font-size:21px;color:#fff;text-transform:capitalize}
+.calnav{background:rgba(255,255,255,.05);border:1px solid var(--line);color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px}
+.calnav:hover{border-color:var(--gold);color:var(--gold2)}
+.dow{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:5px}
+.dow span{text-align:center;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal .d{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:14px;border:1px solid transparent;border-radius:7px;cursor:pointer;background:rgba(255,255,255,.04);transition:.18s}
+.cal .d:hover{border-color:var(--gold)}
+.cal .d.off{opacity:0;pointer-events:none}
+.cal .d.dis{opacity:.22;pointer-events:none;background:transparent}
+.cal .d.sel{background:var(--gold);color:#15110a;font-weight:600}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.slot{border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);padding:9px 14px;border-radius:30px;font-size:13px;cursor:pointer;transition:.18s}
+.slot:hover{border-color:var(--gold)}.slot.sel{background:var(--gold);color:#15110a;font-weight:600;border-color:var(--gold)}
+.sfields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:480px){.sfields{grid-template-columns:1fr}}
+.sfields .full{grid-column:1/-1}
+.confirm{width:100%;justify-content:center;margin-top:18px;opacity:.5;pointer-events:none}
+.confirm.ready{opacity:1;pointer-events:auto}
+.okmsg{display:none;text-align:center;padding:10px 0 4px}
+.okmsg .ic{width:60px;height:60px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;margin:0 auto 14px;color:var(--gold2);font-size:30px}
+.okmsg h3{color:#fff;font-size:26px}.okmsg p{color:var(--muted);font-size:14px;margin:8px 0 18px}
+.okmsg .row2{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.okmsg .btn-gold svg{fill:#15110a}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+ <div class="wrap">
+  <a class="brand" href="#inicio"><img class="mark" src="logo.png" alt="Mónica Betancourt"><span><b>Mónica Betancourt</b><small>Excelencia Inmobiliaria</small></span></a>
+  <button class="topcta" onclick="goVender()"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg><span class="lbl">Cotiza tu propiedad</span></button>
+ </div>
+</header>
+<section class="hero" id="inicio">
+ <div class="corners"><span>Mónica Betancourt</span><span>México</span></div>
+ <div class="eyebrow">Bienes Raíces de Lujo</div>
+ <h1>Excelencia<span class="l2 serif-it">Inmobiliaria</span></h1>
+ <p class="herosub">Compra, vende e invierte en propiedades excepcionales en México, con asesoría personalizada, discreta y a la medida.</p>
+ <div class="heropills"><div class="hpill">Compra</div><div class="hpill">Venta</div><div class="hpill">Renta</div><div class="hpill">Inversión</div></div>
+ <div class="herocta">
+  <button class="btn-gold" onclick="goVender()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>Cotiza tu propiedad gratis</button>
+  <button class="btn-out" onclick="goComprar()">Ver propiedades</button>
+ </div>
+ <div class="scrollcue">Descúbrelo ▾</div>
+</section>
+<div class="wrap">
+ <div class="modewrap">
+  <div class="seg">
+   <button id="mV" class="on" onclick="goVender()"><svg viewBox="0 0 24 24"><path d="M12 2v20M5 9l7-7 7 7"/><circle cx="12" cy="17" r="1"/></svg>Quiero vender</button>
+   <button id="mC" onclick="goComprar()"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M9 22V12h6v10"/></svg>Quiero comprar</button>
+  </div>
+ </div>
+ <div id="vender">
+  <div class="seller-hero">
+   <div class="eyebrow">Vende con estrategia</div>
+   <h2>Descubre cuánto vale <span class="serif-it">tu propiedad</span></h2>
+   <p>Simula el valor de tu inmueble al instante con precios reales por zona, y recibe una asesoría profesional sin costo.</p>
+  </div>
+  <div class="cotiz" id="cotizador">
+   <div class="cotiz-form">
+    <h3>Simulador de valor</h3>
+    <div class="sub">Datos de tu inmueble — estimación inmediata.</div>
+    <div class="cgrid">
+     <div class="field"><label>Tipo de inmueble</label><select id="z_tipo" onchange="toggleTerreno()"><option>Casa</option><option>Departamento</option><option>Casa en condominio</option><option>Oficina</option><option>Edificio</option><option>Terreno</option></select></div>
+     <div class="field"><label>Estado</label><select id="z_estado"><option>Nuevo / Seminuevo</option><option selected>Buen estado</option><option>Para remodelar</option></select></div>
+     <div class="field full"><label>Zona</label><select id="z_zona"></select></div>
+     <div class="field"><label id="lbl_constr">M² construidos</label><input id="z_constr" type="number" min="0" placeholder="Ej. 250"></div>
+     <div class="field"><label>M² de terreno</label><input id="z_terreno" type="number" min="0" placeholder="Ej. 300"></div>
+     <div class="field"><label>Recámaras</label><input id="z_rec" type="number" min="0" placeholder="Ej. 3"></div>
+     <div class="field"><label>Estacionamientos</label><input id="z_estacn" type="number" min="0" placeholder="Ej. 2"></div>
+    </div>
+    <button class="btn-gold" onclick="calcCotiza()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h4"/></svg>Calcular mi valuación</button>
+   </div>
+   <div class="cotiz-result">
+    <div class="cr-empty" id="crEmpty">
+     <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg>
+     <div>Completa los datos y obtén una<br>estimación de valor al instante.</div>
+    </div>
+    <div class="cr-live" id="crLive">
+     <div class="cr-label">Valor estimado aproximado</div>
+     <div class="cr-range" id="crRange">—</div>
+     <div class="cr-pm" id="crPm"></div>
+     <div class="cr-note">Estimación referencial con base en precios de mercado por zona. El valor final se define con una valuación profesional.</div>
+     <div class="cr-expert">
+      <div class="cr-expert-t"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.9 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>Mónica, experta en vender</div>
+      <p>Agenda una <b>asesoría sin costo</b> y descubre el valor real de tu propiedad y en cuánto se puede vender, con una estrategia a la medida.</p>
+      <div class="cr-form">
+       <div class="cgrid">
+        <div class="field"><label>Nombre</label><input id="z_nom" placeholder="Tu nombre"></div>
+        <div class="field"><label>Teléfono</label><input id="z_tel" placeholder="55 ..."></div>
+       </div>
+       <button class="btn-gold" onclick="sendCotiza()"><svg viewBox="0 0 24 24" fill="#15110a"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z"/></svg>Quiero vender con Mónica</button>
+       <div class="cr-or"><button onclick="openSched('Vender','')"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Agendar asesoría gratis</button></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <div class="steps">
+   <div class="step"><b>01</b><h4>Valuación profesional</h4><p>Análisis de tu inmueble y su zona para fijar el precio óptimo de mercado.</p></div>
+   <div class="step"><b>02</b><h4>Marketing premium</h4><p>Fotografía profesional, ficha de lujo y difusión a compradores calificados.</p></div>
+   <div class="step"><b>03</b><h4>Cierre seguro</h4><p>Asesoría legal y financiera, negociación y acompañamiento hasta la firma.</p></div>
+  </div>
+ </div>
+ <div id="comprar" style="display:none">
+  <div class="intro" id="propiedades">
+   <div class="eyebrow">Colección</div>
+   <h2>Propiedades <span class="serif-it">destacadas</span></h2>
+   <p>Una selección curada de residencias, departamentos y terrenos premium. Reserva una visita privada con un solo clic.</p>
+  </div>
+  <div class="filters"><button class="f on" data-f="all">Todas</button><button class="f" data-f="Venta">Venta</button><button class="f" data-f="Renta">Renta</button><button class="f" data-f="Casa">Casa</button><button class="f" data-f="Casa en condominio">Casa en condominio</button><button class="f" data-f="Departamento">Departamento</button><button class="f" data-f="Edificio">Edificio</button><button class="f" data-f="Oficina">Oficina</button><button class="f" data-f="Terreno">Terreno</button></div>
+  <div class="grid" id="grid">
+<article class="card" data-tipo="Departamento" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-001-1.jpg)"><span class="badge">Departamento</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-001-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-001-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-001-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Adolfo Prieto, Del Valle Centro · Benito Juárez, CDMX</div>
+    <h3>Departamento Iluminado</h3>
+    <div class="price">$8,200,000 MXN<span class="mant">Mant. $3,500</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">170 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">170 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">2</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">10 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Bonito departamento desarrollado en tres niveles. Área principal con sala, comedor con salida a balcón y cocina integral con cubierta de granito. Recámara principal con salida al balcón y tercer nivel con baño completo y roof garden privado de 25 m². Excelente ubicación, muy cerca de parques, comercio, escuelas y buenas vías de comunicación.</p>
+    <div class="chips"><span class="chip">Roof garden privado</span><span class="chip">3 niveles</span><span class="chip">Cocina de granito</span><span class="chip">Balcón</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Departamento Iluminado')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Departamento%20Iluminado%20%28%248%2C200%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclapin-departamento-iluminado-149693535.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Departamento" data-op="Renta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-002-1.jpg)"><span class="badge">Departamento</span><span class="op-badge op-renta">Renta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-002-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-002-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-002-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Río Guadalquivir, Cuauhtémoc · Cuauhtémoc, CDMX</div>
+    <h3>Departamento Para Estrenar</h3>
+    <div class="price">$34,000 MXN /mes<span class="mant">Mant. $4,856</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">76 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">76 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">2</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">2</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">1</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">A estrenar</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Lindo departamento muy iluminado con sala, comedor y balcón. Dos recámaras con salida a balcón, la principal con baño integrado. Cocina integral con cubierta de granito. Nuevo, interior, acepta mascotas y cuenta con roof garden común con asador. Ubicación de privilegio en el corazón de la ciudad.</p>
+    <div class="chips"><span class="chip">A estrenar</span><span class="chip">Acepta mascotas</span><span class="chip">Roof garden con asador</span><span class="chip">Interior</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Departamento Para Estrenar')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Departamento%20Para%20Estrenar%20%28%2434%2C000%20MXN%20/mes%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/alclapin-departamento-para-estrenar-149693296.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Terreno" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-003-1.jpg)"><span class="badge">Terreno</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-003-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-003-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-003-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Calvario, Tlalpan Centro · Tlalpan, CDMX</div>
+    <h3>Terreno Tlalpan Centro</h3>
+    <div class="price">$26,000,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">1400 m²</div><div class="spec-l">Terreno</div></div></div>
+    <p class="desc">Excelente terreno a una cuadra de Insurgentes Sur, ideal para inversionistas. Perfecto para desarrollar viviendas; actualmente cuenta con construcción en un solo nivel. Excelente ubicación cerca de Perisur, Periférico y zona de hospitales.</p>
+    <div class="chips"><span class="chip">Ideal inversionistas</span><span class="chip">1,400 m² de terreno</span><span class="chip">A una cuadra de Insurgentes</span><span class="chip">Uso para desarrollo</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Terreno Tlalpan Centro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Terreno%20Tlalpan%20Centro%20%28%2426%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/vecltein-terreno-tlalpan-centro-149694164.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa en condominio" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-004-1.jpg)"><span class="badge">Casa en condominio</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-004-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-004-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-004-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Calle División del Norte, El Yaqui · Cuajimalpa de Morelos, CDMX</div>
+    <h3>Lomas de Memetla</h3>
+    <div class="price">$20,000,000 MXN<span class="mant">Mant. $3,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">450 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">392 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">4</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">25 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Hermosa residencia con excelente proyecto arquitectónico rodeada de jardines, en condominio horizontal de solo 4 casas. Sala con chimenea, amplio comedor con bar y salida a terraza con jardín de 200 m² equipado con pérgola y asador. Cocina con isla y desayunador. Tres recámaras con vestidor y baño. Acabados de lujo en mármol, madera de Tzalam y granito.</p>
+    <div class="chips"><span class="chip">Condominio de 4 casas</span><span class="chip">Jardín 200 m²</span><span class="chip">Chimenea</span><span class="chip">Acabados de lujo</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Lomas de Memetla')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Lomas%20de%20Memetla%20%28%2420%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclccin-lomas-de-memetla-149694217.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa en condominio" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-005-1.jpg)"><span class="badge">Casa en condominio</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-005-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-005-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-005-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Loma de la Palma, Lomas de Vista Hermosa · Cuajimalpa de Morelos, CDMX</div>
+    <h3>Casa en Condominio Lomas de Vista Hermosa</h3>
+    <div class="price">$18,700,000 MXN<span class="mant">Mant. $5,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">483 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">486 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">4</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">20 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Excelente residencia con doble vigilancia en condominio horizontal de solo 5 casas, rodeada de zona boscosa. Vestíbulo de doble altura, amplia sala con chimenea, comedor y salida al jardín de aprox. 150 m². Cocina integral nueva con barra desayunador de granito. Tres recámaras con vestidor y baño, todas con salida a terraza. Estudio, sala de televisión y garage para cuatro autos.</p>
+    <div class="chips"><span class="chip">Doble vigilancia</span><span class="chip">Zona boscosa</span><span class="chip">Chimenea</span><span class="chip">Jardín 150 m²</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Casa en Condominio Lomas de Vista Hermosa')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Casa%20en%20Condominio%20Lomas%20de%20Vista%20Hermosa%20%28%2418%2C700%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclccin-casa-en-condominio-lomas-de-vista-hermosa-149694352.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-006-1.jpg)"><span class="badge">Casa</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-006-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-006-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-006-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Cerro de la Escondida, Pedregal de San Francisco · Coyoacán, CDMX</div>
+    <h3>Casa en Venta Pedregal de San Francisco</h3>
+    <div class="price">$33,000,000 MXN<span class="mant">Mant. $4,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">715 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">927 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">4</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">4</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">6</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">40 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Hermosa residencia en una de las calles más bonitas del exclusivo fraccionamiento Pedregal de San Francisco, frente a parque. Casa llena de luz rodeada de áreas verdes, desarrollada en 3 niveles. Cuatro recámaras con baño, la principal con vestidor. Jardín central, biblioteca, salón de usos múltiples y estacionamiento para 6 autos. Fraccionamiento con estricta vigilancia.</p>
+    <div class="chips"><span class="chip">Frente a parque</span><span class="chip">Biblioteca</span><span class="chip">Estricta vigilancia</span><span class="chip">927 m² construidos</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Casa en Venta Pedregal de San Francisco')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Casa%20en%20Venta%20Pedregal%20de%20San%20Francisco%20%28%2433%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclcain-casa-en-venta-pedregal-de-san-francisco-149694681.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-007-1.jpg)"><span class="badge">Casa</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-007-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-007-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-007-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Cerro de La Mano, Pedregal de San Francisco · Coyoacán, CDMX</div>
+    <h3>Residencia en Venta Pedregal de San Francisco</h3>
+    <div class="price">$28,000,000 MXN<span class="mant">Mant. $4,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">758 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">628 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">4</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">4</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">4</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">40 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Hermosa residencia en el Pedregal de San Francisco, rodeada de áreas verdes y espacios amplios e iluminados. Sala amplia con comedor y excelente vista al jardín, cocina con desayunador, estudio y sala de televisión. Cuatro recámaras con baño, la principal con amplio vestidor. Jardín con fuente, ideal para eventos familiares. Fraccionamiento con estricta vigilancia.</p>
+    <div class="chips"><span class="chip">Jardín con fuente</span><span class="chip">Estudio</span><span class="chip">Estricta vigilancia</span><span class="chip">Áreas verdes</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Residencia en Venta Pedregal de San Francisco')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Residencia%20en%20Venta%20Pedregal%20de%20San%20Francisco%20%28%2428%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclcain-residencia-en-venta-pedregal-de-san-francisco-149694770.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Oficina" data-op="Renta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-008-1.jpg)"><span class="badge">Oficina</span><span class="op-badge op-renta">Renta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-008-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-008-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-008-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Avenida Melchor Ocampo · Coyoacán, CDMX</div>
+    <h3>Oficina en Renta Santa Catarina Coyoacán</h3>
+    <div class="price">$280,000 MXN /mes</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">850 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">850 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">10</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">5</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">2 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Hermosa casa para oficinas en el corazón de Coyoacán, cerca de áreas comerciales, plazas, escuelas y vías rápidas. Cuenta con 18 privados, la mayoría con baño integrado, sala de juntas, cocina para empleados y terraza. Excelente iluminación y vistas verdes. Cerca de la UNAM, metro Miguel Ángel de Quevedo y Copilco. Precio ya incluye IVA.</p>
+    <div class="chips"><span class="chip">18 privados</span><span class="chip">Sala de juntas</span><span class="chip">Terraza</span><span class="chip">Cerca de la UNAM</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Oficina en Renta Santa Catarina Coyoacán')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Oficina%20en%20Renta%20Santa%20Catarina%20Coyoacan%20%28%24280%2C000%20MXN%20/mes%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/alclocin-oficina-en-renta-santa-catarina-coyoacan-149694983.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Edificio" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-009-1.jpg)"><span class="badge">Edificio</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-009-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-009-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-009-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Matías Romero, Vértiz Narvarte · Benito Juárez, CDMX</div>
+    <h3>Edificio en Venta Vértiz Narvarte</h3>
+    <div class="price">$21,000,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">220 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">660 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">10</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">20 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Excelente edificio con uso de suelo comercial, desarrollado en tres niveles. Acceso con caseta de vigilancia, áreas abiertas y escalera central. Cuenta con tres frentes: Eje Central Lázaro Cárdenas, calle Cuicuilco y acceso principal sobre Matías Romero. Zona comercial sobre vías principales, ideal para inversión.</p>
+    <div class="chips"><span class="chip">Uso de suelo comercial</span><span class="chip">Tres frentes</span><span class="chip">Caseta de vigilancia</span><span class="chip">Zona comercial</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Edificio en Venta Vértiz Narvarte')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Edificio%20en%20Venta%20Vertiz%20Narvarte%20%28%2421%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/vecledin-edificio-en-venta-vertiz-narvarte-149694910.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-010-1.jpg)"><span class="badge">Casa</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-010-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-010-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-010-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Avenida del Regidor · Tlalpan, CDMX</div>
+    <h3>Casa en Venta Ampliación Coapa</h3>
+    <div class="price">$10,250,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">205 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">250 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">5</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">2</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">2</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">50 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Casa en esquina con muy buena iluminación, desarrollada en dos niveles. Planta principal con sala, comedor, cocina amplia y agradable bar. Cinco recámaras, la principal con baño integrado, sala de televisión, cuarto y patio de servicio. Dos estacionamientos y jardín decorativo.</p>
+    <div class="chips"><span class="chip">Casa en esquina</span><span class="chip">5 recámaras</span><span class="chip">Bar</span><span class="chip">Jardín</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Casa en Venta Ampliación Coapa')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Casa%20en%20Venta%20Ampliacion%20Coapa%20%28%2410%2C250%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclcain-casa-en-venta-ampliacion-coapa-149694869.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-011-1.jpg)"><span class="badge">Casa</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-011-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-011-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-011-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Margaritas, Florida · Álvaro Obregón, CDMX</div>
+    <h3>Casa en Venta Colonia Florida</h3>
+    <div class="price">$14,400,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">263 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">368 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">4</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">4</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">40 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Excelente casa en el corazón de la Florida, cerca del Club France y Club Libanés. Llena de luz natural y desarrollada en dos niveles. Sala con chimenea, comedor con salida al jardín, antecomedor y amplia cocina con cubierta de granito. Cuatro recámaras, una con balcón y tres con baño integrado. Cuatro lugares de estacionamiento y jardín.</p>
+    <div class="chips"><span class="chip">Cerca del Club France</span><span class="chip">Chimenea</span><span class="chip">Jardín</span><span class="chip">4 estacionamientos</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Casa en Venta Colonia Florida')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Casa%20en%20Venta%20Colonia%20Florida%20%28%2414%2C400%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclcain-casa-en-venta-colonia-florida-149694539.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa en condominio" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-012-1.jpg)"><span class="badge">Casa en condominio</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-012-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-012-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-012-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Camelia, Florida · Álvaro Obregón, CDMX</div>
+    <h3>Precioso Condominio Horizontal</h3>
+    <div class="price">$20,500,000 MXN<span class="mant">Mant. $2,500</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">300 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">454 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">4</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">4</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">8</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">3 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Excelente residencia en condominio horizontal cerca del Club France, desarrollada en tres niveles. Salón de usos múltiples con bar, estudio y salida a jardín. Sala con chimenea, comedor y cocina equipada con barra de granito. Cuatro recámaras con baño integrado. Calentador y paneles solares, acabados de lujo en Tzalam, cristal templado y granito. Garage para 8 autos.</p>
+    <div class="chips"><span class="chip">Paneles solares</span><span class="chip">Chimenea</span><span class="chip">Acabados de lujo</span><span class="chip">Garage 8 autos</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Precioso Condominio Horizontal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Precioso%20Condominio%20Horizontal%20%28%2420%2C500%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclccin-precioso-condominio-horizontal-149694442.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Terreno" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-013-1.jpg)"><span class="badge">Terreno</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-013-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-013-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-013-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Llanura, Jardines del Pedregal de San Ángel · Coyoacán, CDMX</div>
+    <h3>Terreno Jardines del Pedregal</h3>
+    <div class="price">$13,000,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">500 m²</div><div class="spec-l">Terreno</div></div></div>
+    <p class="desc">Excelente terreno plano totalmente bardeado con excelente ubicación cerca de la UNAM, Insurgentes y Periférico. Ideal para desarrollar una residencia de alto nivel en una de las zonas más exclusivas del sur de la ciudad.</p>
+    <div class="chips"><span class="chip">Terreno plano</span><span class="chip">Bardeado</span><span class="chip">Cerca de la UNAM</span><span class="chip">Zona exclusiva</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Terreno Jardines del Pedregal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Terreno%20Jardines%20del%20Pedregal%20%28%2413%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/vecltein-terreno-jardines-del-pedregal-149694104.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Terreno" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-014-1.jpg)"><span class="badge">Terreno</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-014-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-014-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-014-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Cerrada Arenal, Colinas del Bosque · Tlalpan, CDMX</div>
+    <h3>Terreno Colinas del Bosque</h3>
+    <div class="price">$21,000,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">959 m²</div><div class="spec-l">Terreno</div></div></div>
+    <p class="desc">Excelente terreno plano totalmente bardeado en exclusivo fraccionamiento al sur de la ciudad, rodeado de áreas verdes, hermosos jardines, cancha de tenis, futbol, basketball, gimnasio y área para perros, con estricta vigilancia. Acceso rápido a Periférico Norte y Sur.</p>
+    <div class="chips"><span class="chip">959 m² de terreno</span><span class="chip">Amenidades deportivas</span><span class="chip">Estricta vigilancia</span><span class="chip">Áreas verdes</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Terreno Colinas del Bosque')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Terreno%20Colinas%20del%20Bosque%20%28%2421%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/vecltein-terreno-colinas-del-bosque-149694050.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Departamento" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-015-1.jpg)"><span class="badge">Departamento</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-015-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-015-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-015-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Lomas del Pedregal · Tlalpan, CDMX</div>
+    <h3>Hermoso Garden House</h3>
+    <div class="price">$25,000,000 MXN<span class="mant">Mant. $5,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">460 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">460 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">3</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">2 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Hermoso departamento rodeado de lujo y confort. Sala, comedor con salida a terraza privada totalmente acondicionada, cocina integral con cubierta de granito y sala de televisión. Tres recámaras con baño integrado; la principal con vestidor y salida a terraza. El edificio cuenta con gimnasio y salón de eventos. Seminuevo, con excelentes espacios y mucha luz.</p>
+    <div class="chips"><span class="chip">Terraza privada</span><span class="chip">Gimnasio</span><span class="chip">Salón de eventos</span><span class="chip">Seminuevo</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Hermoso Garden House')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Hermoso%20Garden%20House%20%28%2425%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclapin-hermoso-garden-house-149693691.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Oficina" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-016-1.jpg)"><span class="badge">Oficina</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-016-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-016-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-016-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Avenida Insurgentes Sur, Roma Norte · Cuauhtémoc, CDMX</div>
+    <h3>Oficina Insurgentes Sur</h3>
+    <div class="price">$2,100,000 MXN<span class="mant">Mant. $1,500</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">57 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">57 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">40 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Oficina exterior con buena iluminación. Cuenta con recepción, un privado, medio baño, cocineta y área abierta de trabajo. El edificio cuenta con baños de hombre y mujer en entrepiso. Excelentes vías de comunicación, junto a la estación de metrobús Durango, en el corazón de la Colonia Roma. Precio más IVA.</p>
+    <div class="chips"><span class="chip">En Roma Norte</span><span class="chip">Junto a Metrobús</span><span class="chip">Recepción</span><span class="chip">Oficina exterior</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Oficina Insurgentes Sur')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Oficina%20Insurgentes%20Sur%20%28%242%2C100%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclocin-oficina-insurgentes-sur-149693628.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Departamento" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-017-1.jpg)"><span class="badge">Departamento</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-017-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-017-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-017-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Costera de las Palmas 5 · Acapulco de Juárez, Guerrero</div>
+    <h3>Costaventura Acapulco Diamante</h3>
+    <div class="price">$23,000,000 MXN<span class="mant">Mant. $8,000</span></div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">402 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">402 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">6</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">15 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Lujoso departamento en una zona exclusiva de Acapulco Diamante con hermosa vista al mar y gran terraza. Amenidades de primer nivel: estricta vigilancia, gimnasio, spa, alberca, palapa, jardines, ludoteca, área de juegos, salón para adultos y valet parking. Recámara principal con jacuzzi, vestidor y salida a terraza. Cocina integral con barra desayunador de granito.</p>
+    <div class="chips"><span class="chip">Vista al mar</span><span class="chip">Spa y alberca</span><span class="chip">Jacuzzi en principal</span><span class="chip">Valet parking</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Costaventura Acapulco Diamante')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Costaventura%20Acapulco%20Diamante%20%28%2423%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclapin-costaventura-acapulco-diamante-149751177.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Casa en condominio" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-018-1.jpg)"><span class="badge">Casa en condominio</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-018-1.jpg)" aria-label="Foto 1"></button></div></div>
+  <div class="body">
+    <div class="loc">Pedregal de San Francisco · Coyoacán, CDMX</div>
+    <h3>Casa en Condominio Pedregal de San Francisco</h3>
+    <div class="price">Precio a consultar</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">300 m²</div><div class="spec-l">Terreno</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 21V7l8-4 8 4v14M9 21v-6h6v6M9 11h.01M15 11h.01"/></svg><div class="spec-v">408 m²</div><div class="spec-l">Construc.</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 18v-4a2 2 0 012-2h14a2 2 0 012 2v4M3 18v2M21 18v2M5 12V8a2 2 0 012-2h10a2 2 0 012 2v4"/></svg><div class="spec-v">3</div><div class="spec-l">Recámaras</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M4 12h16v3a4 4 0 01-4 4H8a4 4 0 01-4-4v-3zM7 12V6a2 2 0 012-2 2 2 0 012 2M6 19l-1 2M18 19l1 2"/></svg><div class="spec-v">3</div><div class="spec-l">Baños</div></div><div class="spec"><svg viewBox="0 0 24 24"><path d="M5 11l1.5-4.5A2 2 0 018.4 5h7.2a2 2 0 011.9 1.5L19 11M5 11h14v5H5v-5zM7 16v2M17 16v2"/></svg><div class="spec-v">4</div><div class="spec-l">Estac.</div></div><div class="spec"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div class="spec-v">30 años</div><div class="spec-l">Antigüedad</div></div></div>
+    <p class="desc">Casa en condominio horizontal con club de tenis dentro del Pedregal de San Francisco, rodeada de hermosos jardines y con doble seguridad. Una excelente oportunidad en una de las zonas residenciales más exclusivas de Coyoacán.</p>
+    <div class="chips"><span class="chip">Club de tenis</span><span class="chip">Doble seguridad</span><span class="chip">Jardines</span><span class="chip">Zona exclusiva</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Casa en Condominio Pedregal de San Francisco')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Casa%20en%20Condominio%20Pedregal%20de%20San%20Francisco%20%28Precio%20a%20consultar%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/veclccin-casa-en-venta-pedregal-de-san-francisco-149750993.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+<article class="card" data-tipo="Terreno" data-op="Venta">
+  <div class="gal"><div class="gal-main" style="background-image:url(inmueble-019-1.jpg)"><span class="badge">Terreno</span><span class="op-badge op-venta">Venta</span></div><div class="gal-th"><button class="th on" style="background-image:url(inmueble-019-1.jpg)" aria-label="Foto 1"></button><button class="th" style="background-image:url(inmueble-019-2.jpg)" aria-label="Foto 2"></button><button class="th" style="background-image:url(inmueble-019-3.jpg)" aria-label="Foto 3"></button></div></div>
+  <div class="body">
+    <div class="loc">Lago Chalco, Anáhuac II Sección · Miguel Hidalgo, CDMX</div>
+    <h3>Terreno en Venta Anáhuac</h3>
+    <div class="price">$15,000,000 MXN</div>
+    <div class="specs"><div class="spec"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9l7-5 7 5v11M9 20v-5h6v5"/></svg><div class="spec-v">500 m²</div><div class="spec-l">Terreno</div></div></div>
+    <p class="desc">Atención inversionistas: excelente terreno para desarrollar vivienda en zona de privilegio, a solo 5 minutos de Polanco y cerca de Reforma. Terreno plano a media cuadra de Marina Nacional, con gran potencial para desarrollo de viviendas.</p>
+    <div class="chips"><span class="chip">A 5 min de Polanco</span><span class="chip">Ideal inversionistas</span><span class="chip">Terreno plano</span><span class="chip">Potencial de desarrollo</span></div>
+    <div class="actions">
+      <button class="btn" onclick="openSched('Comprar','Terreno en Venta Anáhuac')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar visita</button>
+      <a class="btn-wa" href="https://wa.me/525526900824?text=Hola%20Monica%2C%20me%20interesa%3A%20Terreno%20en%20Venta%20Anahuac%20%28%2415%2C000%2C000%20MXN%29.%20Me%20puede%20dar%20mas%20informacion%3F" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#3ddc84"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg>WhatsApp</a>
+    </div>
+    <a class="vficha" href="https://www.inmuebles24.com/propiedades/clasificado/vecltein-terreno-en-venta-anahuac-149965219.html" target="_blank" rel="noopener">Ver ficha original ↗</a>
+  </div>
+</article>
+  </div>
+ </div>
+</div>
+<section class="contact" id="contacto"><div class="wrap">
+ <div>
+  <div class="eyebrow">Atención personalizada</div>
+  <h2>Hablemos de tu próxima <span class="serif-it">inversión</span></h2>
+  <p>Te acompaño en cada etapa con discreción y a la medida. Agenda una cita o escríbeme directo.</p>
+  <div class="cbtns">
+   <button class="cbtn gold" onclick="openSched('Comprar','')"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M9 14.5l2 2 4-4"/></svg>Agendar cita</button>
+  </div>
+ </div>
+ <div class="cbox">
+  <div class="cbox-h">Contáctame directo</div>
+  <a class="cbox-btn wa" href="https://wa.me/525526900824?text=Hola%20M%C3%B3nica%2C%20me%20interesa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#25d366"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg><span><span class="cb-t">WhatsApp</span><span class="cb-s">Respuesta inmediata</span></span></a>
+  <a class="cbox-btn" href="tel:+525526900824"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.8 19.8 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></span><span><span class="cb-t">Llamar ahora</span><span class="cb-s">Atención personal</span></span></a>
+  <a class="cbox-btn" href="mailto:mnkbetancourt@gmail.com?subject=Quiero%20informaci%C3%B3n"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6l9 6 9-6"/></svg></span><span><span class="cb-t">Enviar correo</span><span class="cb-s">Te respondo el mismo día</span></span></a>
+  <div class="cbox-foot">Atención personal, discreta y a la medida</div>
+ </div>
+</div></section>
+<footer>
+ <img class="foot-logo" src="logo.png" alt="Mónica Betancourt">
+ <div class="fb">Mónica Betancourt</div>
+ <div class="ft">Mejores Bienes · Excelencia Inmobiliaria</div>
+ <div class="fcert">Profesional Inmobiliaria Certificada</div>
+ <div class="fdata">
+  <b>Teléfono:</b> <a href="tel:+525526900824">(55) 2690-0824</a><br>
+  <b>Correo:</b> <a href="mailto:mnkbetancourt@gmail.com">mnkbetancourt@gmail.com</a><br>
+  <b>Cobertura:</b> México
+ </div>
+ <div>© 2026 Mónica Betancourt · Todos los derechos reservados</div>
+ <div class="disc">Información e imágenes provenientes de fichas publicadas en Inmuebles24, con fines informativos. El simulador ofrece una estimación referencial y no constituye una valuación formal. Precios, medidas y disponibilidad sujetos a cambio sin previo aviso.</div>
+</footer>
+<a class="fab-wa" href="https://wa.me/525526900824?text=Hola%20M%C3%B3nica%2C%20me%20interesa%20m%C3%A1s%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="#fff"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.5l-.57-.01c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.06 2.86 1.21 3.06.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"/><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm0 18.13a8.2 8.2 0 01-4.19-1.15l-.3-.18-3.11.82.83-3.04-.2-.31a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 015.82 2.41 8.18 8.18 0 012.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg></a>
+<div class="modal" id="modal">
+ <div class="sheet">
+  <button class="x" onclick="closeSched()">×</button>
+  <div id="schForm">
+   <div class="eyebrow">Agenda en línea</div>
+   <h3>Reserva tu cita</h3>
+   <div class="ctx" id="schCtx">Elige el día y la hora que más te convengan.</div>
+   <div class="calhead"><button class="calnav" onclick="moveMonth(-1)">‹</button><b id="calLabel"></b><button class="calnav" onclick="moveMonth(1)">›</button></div>
+   <div class="dow"><span>D</span><span>L</span><span>M</span><span>M</span><span>J</span><span>V</span><span>S</span></div>
+   <div class="cal" id="cal"></div>
+   <div class="slots" id="slots"></div>
+   <div class="sfields">
+    <div class="field"><label>Nombre</label><input id="c_nom" placeholder="Tu nombre"></div>
+    <div class="field"><label>Teléfono</label><input id="c_tel" placeholder="55 ..."></div>
+    <div class="field full"><label>Motivo</label><select id="c_motivo"><option>Vender</option><option>Comprar</option><option>Asesoría / Valuación</option></select></div>
+    <div class="field full"><label>Propiedad de interés (opcional)</label><select id="c_prop"><option value="">— General —</option><option value="Departamento Iluminado">Departamento Iluminado — $8,200,000 MXN</option><option value="Departamento Para Estrenar">Departamento Para Estrenar — $34,000 MXN /mes</option><option value="Terreno Tlalpan Centro">Terreno Tlalpan Centro — $26,000,000 MXN</option><option value="Lomas de Memetla">Lomas de Memetla — $20,000,000 MXN</option><option value="Casa en Condominio Lomas de Vista Hermosa">Casa en Condominio Lomas de Vista Hermosa — $18,700,000 MXN</option><option value="Casa en Venta Pedregal de San Francisco">Casa en Venta Pedregal de San Francisco — $33,000,000 MXN</option><option value="Residencia en Venta Pedregal de San Francisco">Residencia en Venta Pedregal de San Francisco — $28,000,000 MXN</option><option value="Oficina en Renta Santa Catarina Coyoacán">Oficina en Renta Santa Catarina Coyoacán — $280,000 MXN /mes</option><option value="Edificio en Venta Vértiz Narvarte">Edificio en Venta Vértiz Narvarte — $21,000,000 MXN</option><option value="Casa en Venta Ampliación Coapa">Casa en Venta Ampliación Coapa — $10,250,000 MXN</option><option value="Casa en Venta Colonia Florida">Casa en Venta Colonia Florida — $14,400,000 MXN</option><option value="Precioso Condominio Horizontal">Precioso Condominio Horizontal — $20,500,000 MXN</option><option value="Terreno Jardines del Pedregal">Terreno Jardines del Pedregal — $13,000,000 MXN</option><option value="Terreno Colinas del Bosque">Terreno Colinas del Bosque — $21,000,000 MXN</option><option value="Hermoso Garden House">Hermoso Garden House — $25,000,000 MXN</option><option value="Oficina Insurgentes Sur">Oficina Insurgentes Sur — $2,100,000 MXN</option><option value="Costaventura Acapulco Diamante">Costaventura Acapulco Diamante — $23,000,000 MXN</option><option value="Casa en Condominio Pedregal de San Francisco">Casa en Condominio Pedregal de San Francisco — Precio a consultar</option><option value="Terreno en Venta Anáhuac">Terreno en Venta Anáhuac — $15,000,000 MXN</option></select></div>
+   </div>
+   <button class="btn-gold confirm" id="confirmBtn" onclick="confirmSched()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>Confirmar cita</button>
+  </div>
+  <div class="okmsg" id="okmsg">
+   <div class="ic">✓</div>
+   <h3>¡Cita reservada!</h3>
+   <p id="okText"></p>
+   <div class="row2">
+    <a class="btn-gold" id="okWa" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="#15110a"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.78 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2z"/></svg>Confirmar por WhatsApp</a>
+    <button class="btn-out" id="okIcs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>Descargar .ics</button>
+   </div>
+   <div style="margin-top:16px"><button class="vficha" onclick="closeSched()" style="cursor:pointer;background:none;border:none">Cerrar</button></div>
+  </div>
+ </div>
+</div>
+<script>
+addEventListener('scroll',function(){document.getElementById('top').classList.toggle('scrolled',scrollY>40)});
+function enc(s){return encodeURIComponent((s||'').normalize('NFD').replace(/[̀-ͯ]/g,''));}
+function money(n){return '$'+Math.round(n).toLocaleString('es-MX')+' MXN';}
+function initCards(){
+ document.querySelectorAll('.card').forEach(function(card){
+  var main=card.querySelector('.gal-main');
+  card.querySelectorAll('.gal-th .th').forEach(function(th){
+   th.addEventListener('click',function(){
+    main.style.backgroundImage=th.style.backgroundImage;
+    card.querySelectorAll('.gal-th .th').forEach(function(t){t.classList.remove('on')}); th.classList.add('on');
+   });
+  });
+ });
+ var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.1});
+ document.querySelectorAll('.card').forEach(function(c){io.observe(c)});
+}
+var fbtns=document.querySelectorAll('.f');
+fbtns.forEach(function(b){b.addEventListener('click',function(){
+ fbtns.forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
+ var f=b.dataset.f;
+ document.querySelectorAll('.card').forEach(function(c){c.style.display=(f==='all'||c.dataset.tipo===f||c.dataset.op===f)?'':'none';});
+});});
+initCards();
+function setMode(m){
+ var buy=m==='comprar';
+ document.getElementById('comprar').style.display=buy?'':'none';
+ document.getElementById('vender').style.display=buy?'none':'';
+ document.getElementById('mC').classList.toggle('on',buy);
+ document.getElementById('mV').classList.toggle('on',!buy);
+}
+function goComprar(){setMode('comprar');setTimeout(function(){document.getElementById('propiedades').scrollIntoView({behavior:'smooth',block:'start'});},30);}
+function goVender(){setMode('vender');setTimeout(function(){document.getElementById('cotizador').scrollIntoView({behavior:'smooth',block:'center'});},30);}
+var ZGROUPS={
+ "Ciudad de México":{"CDMX · Polanco / Lomas":78000,"CDMX · Del Valle / Nápoles":52000,"CDMX · Roma / Condesa":56000,"CDMX · Narvarte / Vértiz":42000,"CDMX · Pedregal / Jardines del Pedregal":47000,"CDMX · Coyoacán":44000,"CDMX · San Ángel / Florida":50000,"CDMX · Santa Fe / Cuajimalpa":52000,"CDMX · Tlalpan":39000,"CDMX · Otra alcaldía":40000},
+ "Zona Metropolitana":{"Huixquilucan / Interlomas":48000,"Naucalpan / Satélite":30000,"Otros municipios conurbados":24000},
+ "Bajío":{"Querétaro":40000,"San Miguel de Allende":48000,"León / Guanajuato":28000,"Aguascalientes":26000,"San Luis Potosí":25000},
+ "Occidente":{"Guadalajara / Zapopan":57000,"Puerto Vallarta":58000,"Morelia":26000,"Colima / Manzanillo":30000},
+ "Norte":{"Monterrey · San Pedro":80000,"Monterrey (otras zonas)":50000,"Tijuana":36000,"Chihuahua":26000,"Hermosillo":27000,"Saltillo":25000},
+ "Sureste / Caribe":{"Mérida":32000,"Cancún":48000,"Playa del Carmen":52000,"Tulum":55000,"Campeche / Villahermosa":22000},
+ "Pacífico / Playa":{"Los Cabos":75000,"Acapulco Diamante":52000,"Mazatlán":38000,"Oaxaca / Huatulco":30000},
+ "Otra zona del país":{"Promedio nacional":31000,"Zona económica":19000}
+};
+var ZMAP={};
+(function(){var s=document.getElementById('z_zona');for(var g in ZGROUPS){var og=document.createElement('optgroup');og.label=g;for(var z in ZGROUPS[g]){ZMAP[z]=ZGROUPS[g][z];var o=document.createElement('option');o.textContent=z;og.appendChild(o);}s.appendChild(og);}})();
+var EST={"Nuevo / Seminuevo":1.07,"Buen estado":1.0,"Para remodelar":0.84};
+var TIPOF={"Casa":1.0,"Departamento":1.02,"Casa en condominio":1.03,"Oficina":0.9,"Edificio":0.95,"Terreno":1.0};
+var lastCot=null;
+function toggleTerreno(){var t=document.getElementById('z_tipo').value;var c=document.getElementById('z_constr'),l=document.getElementById('lbl_constr');if(t==='Terreno'){c.value='';c.disabled=true;c.placeholder='—';l.style.opacity=.4;}else{c.disabled=false;c.placeholder='Ej. 250';l.style.opacity=1;}}
+function calcCotiza(){
+ var tipo=document.getElementById('z_tipo').value, zona=document.getElementById('z_zona').value, estado=document.getElementById('z_estado').value;
+ var constr=parseFloat(document.getElementById('z_constr').value)||0, terreno=parseFloat(document.getElementById('z_terreno').value)||0;
+ var rec=parseFloat(document.getElementById('z_rec').value)||0, estac=parseFloat(document.getElementById('z_estacn').value)||0;
+ var pm2=ZMAP[zona]||31000, val;
+ if(tipo==='Terreno'){ val = terreno*pm2*0.6; }
+ else {
+   val = constr*pm2*(EST[estado]||1)*(TIPOF[tipo]||1);
+   if(tipo==='Casa'||tipo==='Casa en condominio'||tipo==='Edificio'){ val += terreno*pm2*0.15; }
+   val += estac*pm2*6;   // valor por cajón de estacionamiento
+   val += rec*pm2*2;     // ligero premio por recámara
+ }
+ if(val<=0){ document.getElementById('crEmpty').style.display='block'; document.getElementById('crLive').style.display='none'; document.getElementById('crEmpty').innerHTML='<div style="color:#e6cf99">Ingresa los metros para calcular tu estimación.</div>'; return; }
+ var low=Math.round(val*0.91/100000)*100000, high=Math.round(val*1.09/100000)*100000;
+ document.getElementById('crEmpty').style.display='none';
+ document.getElementById('crLive').style.display='block';
+ document.getElementById('crRange').textContent=money(low)+'  –  '+money(high);
+ document.getElementById('crPm').textContent='Referencia: '+money(pm2)+' / m² · '+zona.replace('CDMX · ','');
+ lastCot={tipo:tipo,zona:zona,estado:estado,constr:constr,terreno:terreno,rec:rec,estac:estac,low:low,high:high};
+}
+function sendCotiza(){
+ if(!lastCot){calcCotiza(); if(!lastCot) return;}
+ var nom=document.getElementById('z_nom').value||'', tel=document.getElementById('z_tel').value||'';
+ var m='Hola Monica, quiero VENDER mi propiedad.%0A'+
+  'Tipo: '+enc(lastCot.tipo)+'%0AZona: '+enc(lastCot.zona)+'%0AEstado: '+enc(lastCot.estado)+
+  '%0AM2 construidos: '+lastCot.constr+'%0AM2 terreno: '+lastCot.terreno+'%0ARecamaras: '+lastCot.rec+'%0AEstacionamientos: '+lastCot.estac+
+  '%0AEstimacion del simulador: '+enc(money(lastCot.low)+' a '+money(lastCot.high))+
+  '%0ANombre: '+enc(nom)+'%0ATel: '+enc(tel)+'%0AQuiero mi asesoria sin costo.';
+ window.open('https://wa.me/525526900824?text='+m,'_blank');
+}
+var SLOTS=['09:00','10:00','11:00','12:00','13:00','16:00','17:00','18:00'];
+var MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+var view=new Date(); view.setDate(1);
+var sel={date:null,time:null};
+function openSched(motivo,prop){
+ document.getElementById('schForm').style.display='';
+ document.getElementById('okmsg').style.display='none';
+ sel={date:null,time:null};
+ if(motivo){document.getElementById('c_motivo').value=(motivo==='Comprar'?'Comprar':(motivo==='Asesoría / Valuación'?'Asesoría / Valuación':'Vender'));}
+ if(prop){document.getElementById('c_prop').value=prop;}
+ document.getElementById('schCtx').textContent = prop? ('Visita: '+prop) : 'Elige el día y la hora que más te convengan.';
+ view=new Date(); view.setDate(1);
+ renderCal(); renderSlots(); syncConfirm();
+ document.getElementById('modal').classList.add('open');
+}
+function closeSched(){document.getElementById('modal').classList.remove('open');}
+function moveMonth(d){view.setMonth(view.getMonth()+d); renderCal();}
+function sameDay(a,b){return a&&b&&a.getFullYear()==b.getFullYear()&&a.getMonth()==b.getMonth()&&a.getDate()==b.getDate();}
+function renderCal(){
+ document.getElementById('calLabel').textContent=MES[view.getMonth()]+' '+view.getFullYear();
+ var first=new Date(view.getFullYear(),view.getMonth(),1).getDay();
+ var days=new Date(view.getFullYear(),view.getMonth()+1,0).getDate();
+ var today=new Date(); today.setHours(0,0,0,0);
+ var html='';
+ for(var i=0;i<first;i++) html+='<div class="d off"></div>';
+ for(var dd=1;dd<=days;dd++){
+  var dt=new Date(view.getFullYear(),view.getMonth(),dd);
+  var dis = dt<today || dt.getDay()===0;
+  var cls='d'+(dis?' dis':'')+(sameDay(dt,sel.date)?' sel':'');
+  html+='<div class="'+cls+'" data-d="'+dd+'">'+dd+'</div>';
+ }
+ var cal=document.getElementById('cal'); cal.innerHTML=html;
+ cal.querySelectorAll('.d:not(.off):not(.dis)').forEach(function(el){
+  el.addEventListener('click',function(){ sel.date=new Date(view.getFullYear(),view.getMonth(),parseInt(el.dataset.d)); renderCal(); syncConfirm(); });
+ });
+}
+function renderSlots(){
+ var h=''; SLOTS.forEach(function(s){h+='<button class="slot" data-t="'+s+'">'+s+'</button>';});
+ var sl=document.getElementById('slots'); sl.innerHTML=h;
+ sl.querySelectorAll('.slot').forEach(function(el){el.addEventListener('click',function(){ sel.time=el.dataset.t; sl.querySelectorAll('.slot').forEach(function(x){x.classList.remove('sel')}); el.classList.add('sel'); syncConfirm(); });});
+}
+function syncConfirm(){document.getElementById('confirmBtn').classList.toggle('ready', !!(sel.date&&sel.time));}
+function two(n){return String(n).padStart(2,'0');}
+function fmtDate(dt){var dias=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];return dias[dt.getDay()]+' '+dt.getDate()+' de '+MES[dt.getMonth()]+' '+dt.getFullYear();}
+function confirmSched(){
+ if(!sel.date||!sel.time) return;
+ var nom=(document.getElementById('c_nom').value||'').trim(), tel=(document.getElementById('c_tel').value||'').trim();
+ var motivo=document.getElementById('c_motivo').value, prop=document.getElementById('c_prop').value;
+ var hh=parseInt(sel.time.split(':')[0]), mm=parseInt(sel.time.split(':')[1]);
+ var start=new Date(sel.date); start.setHours(hh,mm,0,0); var end=new Date(start.getTime()+3600000);
+ function z(d){return d.getFullYear()+two(d.getMonth()+1)+two(d.getDate())+'T'+two(d.getHours())+two(d.getMinutes())+'00';}
+ var desc='Motivo: '+motivo+(prop?('. Propiedad: '+prop):'')+'. Cliente: '+nom+' '+tel;
+ var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Monica Betancourt//ES','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:cita-'+Date.now()+'@monicabetancourt','DTSTAMP:'+z(new Date()),'DTSTART:'+z(start),'DTEND:'+z(end),'SUMMARY:Cita con Monica Betancourt - '+motivo,'DESCRIPTION:'+desc.replace(/,/g,'\\,'),'LOCATION:Por confirmar con la asesora','END:VEVENT','END:VCALENDAR'].join('\r\n');
+ var blob=new Blob([ics],{type:'text/calendar'}); var url=URL.createObjectURL(blob);
+ document.getElementById('okIcs').onclick=function(){var a=document.createElement('a');a.href=url;a.download='cita-monica-betancourt.ics';a.click();};
+ var wamsg='Hola Monica, quiero CONFIRMAR una cita.%0AFecha: '+enc(fmtDate(sel.date))+'%0AHora: '+sel.time+'%0AMotivo: '+enc(motivo)+(prop?('%0APropiedad: '+enc(prop)):'')+'%0ANombre: '+enc(nom)+'%0ATel: '+enc(tel);
+ document.getElementById('okWa').href='https://wa.me/525526900824?text='+wamsg;
+ document.getElementById('okText').innerHTML='<b style="color:#fff">'+fmtDate(sel.date)+'</b><br>'+sel.time+' hrs · '+motivo+(prop?('<br>'+prop):'');
+ document.getElementById('schForm').style.display='none';
+ document.getElementById('okmsg').style.display='block';
+}
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeSched();});
+</script>
+</body>
+</html>
